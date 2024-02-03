@@ -3,11 +3,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,include
 from events.views import *
-from core.views import *
+from accounts.views import *
 
 
 urlpatterns = [
-    path("", home, name="home"),
+    path("", user_login, name="home"),
     path("admin/", admin.site.urls),
     path("usssa/", include("core.urls")),
     path("connect/", include("events.urls")),
