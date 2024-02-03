@@ -6,9 +6,8 @@
   .form-ctrl {
     padding: 10px;
     .fields {
-      .left {
-        width: 300px;
-        padding: 20px;
+      padding: 20px;
+      .other-fields {
         .field {
           img {
             width: 100%;
@@ -35,8 +34,7 @@
             font-size: 1em;
           }
         }
-      }
-      .other-fields {
+
         width: 70%;
         .field {
           flex-direction: column;
