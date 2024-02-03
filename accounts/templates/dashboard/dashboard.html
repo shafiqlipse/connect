@@ -1,0 +1,94 @@
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>USSSA | {% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link rel="icon" href="{%static 'images/logo.png'%}" sizes="35x35" />
+    <link rel="stylesheet" href="{% static 'css/main/main.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard/dashboard.css'%}" />
+    <link rel="stylesheet" href="{% static 'officials/officials.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/create.css'%}" />
+  </head>
+  <body>
+    <div class="dashboard-wrapper light">
+      <div class="inner-dashboard flex">
+        <div class="sidebar">
+          <div class="big glue">
+            <a href="/" class="logo-brand flex">
+              <img src="{% static 'images/logo.png'%}" alt="" />
+              <h2>USSSA</h2>
+            </a>
+            <ul class="dash-items flex">
+              <li class="dash-item">
+                <i class="fa fa-line-chart"></i>
+                <a href="#" class="dash-link">Overview</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-address-card"></i>
+                <a href="#" class="dash-link">Journalists</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-users"></i>
+                <a href="{% url 'trainees'%}" class="dash-link">Trainees</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-id-badge"></i>
+                <a href="" class="dash-link">Meetings</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-grav"></i>
+                <a href="" class="dash-link">competitions</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-grav"></i>
+                <a href="" class="dash-link">Seasons</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-grav"></i>
+                <a href="" class="dash-link">Fixtures</a>
+              </li>
+              <li class="dash-item">
+                <i class="fa fa-refresh"></i>
+                <a href="#" class="dash-link">transfers</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="main-content-area">
+          <div class="top-nav glue flex">
+            <div class="sidebar-toggle">
+              <i class="fa fa-bars" onclick="SideToggle()"></i>
+            </div>
+            <div class="school-id flex">
+              <img src="{{user.school.badge.url}}" alt="" />
+              <h3>{{user.school.school_name}}</h3>
+            </div>
+
+            <div class="controls flex glue">
+              <li class="control-item">
+                <i class="fa fa-bell"></i>
+                <div class="notification modal-popup"></div>
+              </li>
+              <li class="control-item setting">
+                <i class="fa fa-cog"></i>
+                <div class="settings modal-popup"></div>
+              </li>
+            </div>
+          </div>
+          <div class="content">{% block content %} {% endblock %}</div>
+          <div class="dash-footer glue">oops bumshakata</div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'scripts/app.js'%}"></script>
+    <script src="{% static 'js/control.js'%}"></script>
+  </body>
+</html>

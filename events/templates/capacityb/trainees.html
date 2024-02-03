@@ -1,0 +1,84 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}Trainees{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="officials-page">
+  <h1>Trainees</h1>
+  <a href="{% url 'newtrainee'%}" class="btn-green">new Trainee</a>
+  <div class="officiallist">
+    <div class="filter">
+      <form action="" method="get" class="formis grid6">
+        <div class="field flex">
+          <label>{{myFilter.form.first_name.label}}</label>
+          {{myFilter.form.first_name}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.last_name.label}}</label>
+          {{myFilter.form.last_name}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.designation.label}}</label>
+          {{myFilter.form.designation}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.gender.label}}</label>
+          {{myFilter.form.gender}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.resident.label}}</label>
+          {{myFilter.form.resident}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.discipline.label}}</label>
+          {{myFilter.form.discipline}}
+        </div>
+        <button type="submit" class="btn-submit">filter</button>
+      </form>
+    </div>
+    <div class="titles grid6">
+      <span>First name</span>
+      <span>Last name</span>
+      <span>designation</span>
+      <span>discipline</span>
+      <span>resident</span>
+
+      <span>gender</span>
+    </div>
+    <hr />
+    <div class="official-list">
+      {% for trainee in traineelist%}
+      <div class="officiall grid6">
+        <a href=""> <span>{{trainee.first_name}} </span> </a
+        ><span>{{trainee.last_name}}</span>
+        <span>{{trainee.designation}} </span>
+        <span>{{trainee.gender}}</span>
+        <span>{{trainee.resident}}</span>
+        <span>{{trainee.discipline}}</span>
+      </div>
+      <hr />
+      {%endfor%}
+    </div>
+    <div class="pagination">
+      <span class="step-links">
+        {% if traineelist.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ traineelist.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{traineelist.number }} of {{traineelist.paginator.num_pages}}
+        </span>
+
+        {% if officiallist.has_next %}
+        <a href="?page={{ traineelist.next_page_number }}">next</a>
+        <a href="?page={{ traineelist.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %}

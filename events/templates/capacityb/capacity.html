@@ -1,0 +1,61 @@
+{% extends "dashboard/dashboard.html" %} {%load static%}
+<!--title starts-->
+{%block title%}Add Athlete {% endblock %}
+<!--title ends-->
+{% block content %}
+
+<div class="profile-update">
+  <h1>Add Athlete</h1>
+  <form
+    action=""
+    method="POST"
+    class="form-ctrl glue"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <div class="fields flex">
+      <div class="other-fields">
+        <div class="field flex">
+          <label>{{ form.first_name.label}}</label> {{form.first_name}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.last_name.label}} </label>{{form.last_name}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.date_of_birth.label}}</label> {{form.date_of_birth}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.email.label}}</label> {{form.email}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.phone.label}}</label> {{form.phone}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.designation.label}}</label> {{form.designation}}
+        </div>
+        <div class="field flex">
+          <label>{{form.specify.label}}</label>
+          {{form.specify}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.workplace.label}}</label> {{form.workplace}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.resident.label}}</label> {{form.resident}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.district.label}}</label> {{form.district}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.venue.label}}</label> {{form.venue}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.discipline.label}}</label> {{form.discipline}}
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn-submit">Save athlete</button>
+  </form>
+</div>
+
+{% endblock %}
