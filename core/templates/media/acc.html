@@ -1,3 +1,29 @@
 {%extends 'main/Base.html'%}
-{% block title %}Home{% endblock  %}
-{% block content %}Home{% endblock  %}
+<!---->
+{% load static %}
+<!---->
+{% block title %}Accrediation{% endblock %}
+<!---->{% block content %}
+<div class="email-verification">
+  <div class="mail-page grid2">
+    <div class="left flex">
+      <img src="{% static 'images/media.jpg'%}" alt="">
+    </div>
+    <div class="lefwt flex">
+        <h1>usssa <span>mediahub</span></h1>
+   
+      <p>
+        Welcome to the USSSA Media Hub. Use the link below to access your account. If you do not remember your username or password, click on the link "Forgot Password" on the login form. Or you may contact media@usssaonline.com for support.
+      </p>
+      <a href='' class="btn-submit">Login to your media account</a>
+      <p>Dont have an account? <a href="">Register</a></p>
+    </div>
+    </div>
+ 
+  <article class="copy-footer flex">
+    <h1>USSSA</h1>
+    <p> Copyright &#169 2024. All Rights Reserved</p>
+  </article>
+</div>
+
+{% endblock %}
