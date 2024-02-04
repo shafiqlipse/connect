@@ -13,11 +13,12 @@
   border-radius: 10px;
 }
 .email-verification .mail-page .left {
-  width: 50%;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   text-align: center;
   text-transform: uppercase;
-  background-color: #000;
+  background-color: #a70000;
   color: #fff;
 }
 .email-verification .mail-page .left h1 {
@@ -28,6 +29,13 @@
   font-weight: 500;
 }
 .email-verification .mail-page .lefwt {
-  width: 50%;
   padding: 20px;
+}
+.email-verification .mail-page .lefwt h2 {
+  margin: 20px 0;
+  color: #a70000;
+}
+.email-verification .mail-page .lefwt p {
+  margin-bottom: 20px;
+  text-align: justify;
 }/*# sourceMappingURL=verify.css.map */

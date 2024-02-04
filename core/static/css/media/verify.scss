@@ -12,11 +12,13 @@
     box-shadow: 1px 1px 10px 1px #ddd;
     border-radius: 10px;
     .left {
-      width: 50%;
+      // width: 50%;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
       text-align: center;
       text-transform: uppercase;
-      background-color: #000;
+      background-color: #a70000;
       color: #fff;
       h1 {
         font-weight: bold;
@@ -27,8 +29,16 @@
       }
     }
     .lefwt {
-      width: 50%;
+      // width: 50%;
       padding: 20px;
+      h2 {
+        margin: 20px 0;
+        color: #a70000;
+      }
+      p {
+        margin-bottom: 20px;
+        text-align: justify;
+      }
     }
   }
 }
