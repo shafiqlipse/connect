@@ -8,5 +8,5 @@ from .views import *
 urlpatterns = [
     path("accreditation/", accreditation, name="accreditation"),
     path("verify/", verify, name="verify"),
-    path("accreditaion_form/", accreditaionform, name="accform"),
+    path("accreditation_form/", accreditaionform, name="accform"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,4 +14,4 @@ def verify(request):
     return render(request, "media/verify.html")
 
 def accreditaionform(request):
-    return render(request, "media/acc_fom.html")
+    return render(request, "media/acc_form.html")
