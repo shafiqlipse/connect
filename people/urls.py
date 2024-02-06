@@ -8,13 +8,14 @@ from core.views import *
 
 
 urlpatterns = [
-    path("", home, name="home"),
+    # path("", home, name="home"),
     path("dashboard/", dashboard, name="dashboard"),
-    path("login/", user_login, name="login"),
+    path("", user_login, name="login"),
     path("logout/", user_logout, name="logout"),
     # path("password/", passwordReset, name="password"),
     path("register/", Register, name="register"),
     path("admin/", admin.site.urls),
-    path("usssa/", include("core.urls")),
-    path("connect/", include("events.urls")),
+    path("accreditation/", accreditation, name="accreditation"),
+    path("verify/", verify, name="verify"),
+    path("accreditation_form/", accreditaionform, name="accform"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
