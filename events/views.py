@@ -12,7 +12,18 @@ from django.http import JsonResponse
 import datetime
 from django.contrib import messages
 from core.models import Media
-
+from django.shortcuts import render, redirect, get_object_or_404
+from xhtml2pdf import pisa
+from django.template.loader import get_template
+from django.http import HttpResponse
+from django.contrib import messages
+from xhtml2pdf import pisa
+from io import BytesIO
+from .models import *
+from .forms import *
+from django.db import IntegrityError
+from django.core.files.base import ContentFile
+import base64
 
 # Create your views here.
 # @school_required
@@ -32,35 +43,58 @@ def register(request):
     return render(request, "capacityb/capacity.html", {"form": form})
 
 
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from io import BytesIO
+
+
+
+
+
 def journs(request):
+    # Get all journs
     journs = Media.objects.all()
 
-    # officialFilter = OfficialFilter(request.GET, queryset=officials)
-    myFilter = MediaFilter(request.GET, queryset=journs)
+    # Apply the filter
+    journs_filter = MediaFilter(request.GET, queryset=journs)
+    alljourns = journs_filter.qs
 
-    journslist = myFilter.qs
+    if request.method == "POST":
+        # Check which form was submitted
+        if "Accreditation" in request.POST:
+            template = get_template("acred.html")
+            filename = "Delegate_Accreditation.pdf"
+        elif "Certificate" in request.POST:
+            template = get_template(
+                "certificate_temaplate.html"
+            )  # Your certificate template
+            filename = "Filtered_Certificate.pdf"
+        else:
+            return HttpResponse("Invalid form submission")
 
-    items_per_page = 10
+        # Generate PDF
+        context = {"alljourns": alljourns}
+        html = template.render(context)
 
-    paginator = Paginator(journslist, items_per_page)
-    page = request.GET.get("page")
+        # Create a PDF
+        pdf_buffer = BytesIO()
+        pisa_status = pisa.CreatePDF(html, dest=pdf_buffer)
 
-    try:
-        journslist = paginator.page(page)
-    except PageNotAnInteger:
-        # If the page is not an integer, deliver the first page
-        journslist = paginator.page(1)
-    except EmptyPage:
-        # If the page is out of range, deliver the last page
-        journslist = paginator.page(paginator.num_pages)
-    context = {
-        "journslist": journslist,
-        # "teamsFilter": teamsFilter,
-        "myFilter": myFilter,
-        # "teamlist": teamlist,
-    }
+        if pisa_status.err:
+            return HttpResponse("We had some errors <pre>" + html + "</pre>")
 
-    return render(request, "media/journs.html", context)
+        pdf_buffer.seek(0)
+
+        # Return the PDF as a response
+        response = HttpResponse(content_type="application/pdf")
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        response.write(pdf_buffer.getvalue())
+        return response
+    else:
+        # Render the filter form
+         return render(request, "media/journs.html", {"journs_filter":journs_filter})
+
 
 
 # # Events details......................................................

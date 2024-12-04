@@ -30,9 +30,23 @@
     <link href="{% static 'assets/css/nucleo-icons.css" rel="stylesheet'%}" />
     <link href="{% static 'assets/css/nucleo-svg.css" rel="stylesheet'%}" />
     <link rel="stylesheet" href="{% static 'css/main/main.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/journs.css'%}" />
     <link
       id="pagestyle"
       href="{% static 'assets/css/material-dashboard.css'%}"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.css"
+    />
+    <link
+      href="https://cdn.datatables.net/v/dt/dt-2.0.1/datatables.min.css"
       rel="stylesheet"
     />
   </head>
@@ -598,6 +612,22 @@
         </div>
       </div>
     </div>
+    <!--   Core JS Files   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- endinject -->
+    <script>
+      $(document).ready(function () {
+        $("#myTable").DataTable();
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#myaTable").DataTable();
+      });
+    </script>
+
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
     <!--   Core JS Files   -->
     <script src="{% static 'assets/js/core/popper.min.js'%}"></script>
     <script src="{% static 'assets/js/core/bootstrap.min.js'%}"></script>

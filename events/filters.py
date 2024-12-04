@@ -7,4 +7,4 @@ from core.models import *
 class MediaFilter(django_filters.FilterSet):
     class Meta:
         model = Media
-        fields = ("fname", "lname", "role", "gender", "media_type")
+        fields = ("fname", "lname", "role", "gender", "status")
