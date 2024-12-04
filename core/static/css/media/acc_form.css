@@ -3,7 +3,6 @@
 }
 .form-verification .main-page {
   background-color: #fff;
-  width: 90%;
   margin: auto;
 }
 @media (max-width: 1024px) {
@@ -11,12 +10,131 @@
     width: 100%;
   }
 }
-.form-verification .main-page .left {
-  width: 30%;
-  background-image: url(../../images/media.jpg);
+.form-verification .main-page .schooler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://freedesignfile.com/upload/2017/02/White-abstract-background-with-wave-vector-illustration-03.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  padding: 20px;
+}
+.form-verification .main-page .schooler .left {
   -o-object-fit: cover;
      object-fit: cover;
   background-repeat: no-repeat;
+}
+.form-verification .main-page .schooler .top {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4em;
+  text-transform: capitalize;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+.form-verification .main-page .schooler .top img {
+  width: 100px;
+}
+.form-verification .main-page .schooler .top .hedtxt {
+  width: 200px;
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+@media (max-width: 1028px) {
+  .form-verification .main-page .schooler {
+    width: 100%;
+  }
+}
+.form-verification .main-page .schooler .form-control {
+  padding: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.497);
+  -webkit-backdrop-filter: blur(2em);
+          backdrop-filter: blur(2em);
+}
+@media (max-width: 1098px) {
+  .form-verification .main-page .schooler .form-control {
+    width: 100%;
+  }
+}
+@media (max-width: 798px) {
+  .form-verification .main-page .schooler .form-control {
+    width: 100%;
+  }
+}
+.form-verification .main-page .schooler .form-control .schooled {
+  margin: 20px 0;
+}
+.form-verification .main-page .schooler .form-control .schooled h2 {
+  background-color: rgba(245, 245, 245, 0.1568627451);
+  padding: 10px;
+  border-bottom: solid 1px #ccc;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .form-verification .main-page .schooler .form-control .schooled .fields .lefut {
+    flex-direction: column;
+  }
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox {
+  width: 35%;
+}
+@media (max-width: 600px) {
+  .form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox {
+    width: 100%;
+  }
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field {
+  width: 100%;
+  flex-direction: column;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field .preview-container {
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/036/594/092/small_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg");
+  background-position: center center;
+  background-size: cover;
+  width: 300px !important;
+  height: 300px !important;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field label {
+  text-transform: capitalize;
+  font-weight: 500;
+  color: #464646;
+  font-size: 15px;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field input {
+  width: 100%;
+  padding: 8px;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil {
+  padding: 10px;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil {
+    width: 100%;
+  }
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field {
+  width: 100%;
+  flex-direction: column;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field label {
+  text-transform: capitalize;
+  font-weight: 500;
+  color: #464646;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field input,
+.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field select {
+  width: 100%;
 }
 .form-verification .copy-footer {
   padding: 10px;
