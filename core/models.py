@@ -1,5 +1,5 @@
 from django.db import models
-
+from accounts.models import User
 
 # Create your models here.
 status_choices = [
@@ -10,6 +10,13 @@ status_choices = [
 
 
 class Media(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name="journalist",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
     fname = models.CharField(max_length=50)
     lname = models.CharField(max_length=50)
     nationality = models.CharField(max_length=50)
