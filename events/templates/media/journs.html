@@ -1,0 +1,159 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}Media{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="officials-page">
+  <h1>Media</h1>
+
+  <div class="officiallist">
+    <div class="filter">
+      <form action="" method="get" class="formis grid6">
+        <div class="field flex">
+          <label>{{myFilter.form.first_name.label}}</label>
+          {{myFilter.form.first_name}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.last_name.label}}</label>
+          {{myFilter.form.last_name}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.designation.label}}</label>
+          {{myFilter.form.designation}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.gender.label}}</label>
+          {{myFilter.form.gender}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.resident.label}}</label>
+          {{myFilter.form.resident}}
+        </div>
+        <div class="field flex">
+          <label>{{myFilter.form.discipline.label}}</label>
+          {{myFilter.form.discipline}}
+        </div>
+        <button type="submit" class="btn-submit">filter</button>
+      </form>
+    </div>
+
+    <div class="card-body px-0 pb-2">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th
+                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Names
+              </th>
+              <th
+                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+              >
+                Organisation
+              </th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Contacts
+              </th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Gender
+              </th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Sport
+              </th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              ></th>
+              {% comment %}
+              <th class="text-secondary opacity-7"></th>
+              {% endcomment %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in journslist%}
+            <tr>
+              <td>
+                <div class="d-flex px-2 py-1">
+                  <div>
+                    <img
+                      src="{{event.profile_photo.url}}"
+                      class="avatar avatar-sm me-3 border-radius-lg"
+                      alt="{{event.fname}}"
+                    />
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">
+                      {{event.fname}} {{event.lname}}
+                    </h6>
+                    <p class="text-xs text-secondary mb-0">
+                      {{event.event_type}}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="text-xs font-weight-bold mb-0">
+                  {{event.media_house}}
+                </p>
+                <p class="text-xs text-secondary mb-0">{{event.role}}</p>
+              </td>
+              <td>
+                <p class="text-xs font-weight-bold mb-0">{{event.email}}</p>
+                <p class="text-xs text-secondary mb-0">{{event.phone}}</p>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="badge badge-sm bg-gradient-success"
+                  >{{event.gender}}</span
+                >
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold"
+                  >{{event.sport}}</span
+                >
+              </td>
+              <td class="align-middle">
+                <a
+                  href="{% url 'eventupdate' event.id%}"
+                  class="text-secondary font-weight-bold text-xs"
+                  data-toggle="tooltip"
+                  data-original-title="Edit user"
+                >
+                  Edit
+                </a>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="pagination">
+      <span class="step-links">
+        {% if journslist.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ journslist.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{journslist.number }} of {{journslist.paginator.num_pages}}
+        </span>
+
+        {% if officiallist.has_next %}
+        <a href="?page={{ journslist.next_page_number }}">next</a>
+        <a href="?page={{ journslist.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+  
+</div>
+{% endblock %}

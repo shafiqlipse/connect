@@ -2,12 +2,15 @@ from django import forms
 from .models import *
 
 
-class CapacityForm(forms.ModelForm):
+class EventForm(forms.ModelForm):
+   
+
     class Meta:
-        model = capacityBuilding
+        model = Event
         fields = "__all__"
         widgets = {
-            "date_of_birth": forms.DateInput(
+            "start_date": forms.DateInput(
                 attrs={"type": "date", "class": "datepicker"}
             ),
+            "end_date": forms.DateInput(attrs={"type": "date", "class": "datepicker"}),
         }

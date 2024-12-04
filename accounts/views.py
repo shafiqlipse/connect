@@ -17,27 +17,6 @@ def dashboard(request):
     return render(request, "dashboard/dashboard.html", context)
 
 
-#  auth views
-@anonymous_required
-def Register(request):
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save(
-                commit=False
-            )  # Create the user object without saving to the database
-            user.is_media = True  # Set is_school to True
-            user.save()  # Save the user object with is_school set to True
-        else:
-            # Log in the user
-            login(request, user)
-
-            return redirect("mediaprofile")
-    else:
-        form = RegistrationForm()
-    return render(request, "account/sregister.html", {"form": form})
-
-
 @anonymous_required
 def user_login(request):
     if request.method == "POST":

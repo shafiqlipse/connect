@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
-from .models import User,UserProfile
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from .models import User, UserProfile  # ,Media
 from django.core.validators import RegexValidator
+from core.models import Media
 
 
 class RegistrationForm(UserCreationForm):
@@ -23,6 +24,7 @@ class RegistrationForm(UserCreationForm):
             "is_media",
         ]
 
+
 class PasswordResetForm(forms.Form):
     new_password1 = forms.CharField(widget=forms.PasswordInput())
     new_password2 = forms.CharField(widget=forms.PasswordInput())
@@ -30,10 +32,17 @@ class PasswordResetForm(forms.Form):
     class Meta:
         fields = ["new_password1", "new_password2"]
 
-class ProfileForm(forms.ModelForm):
+
+from django.forms.widgets import CheckboxSelectMultiple
+
+
+
+
+class MediaForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
-        fields = '__all__'
+        model = Media
+        fields = "__all__"
         widgets = {
-            'agree_to_terms': forms.CheckboxInput(),
+            "agree_to_terms": forms.CheckboxInput(),
+            "sport": CheckboxSelectMultiple(),
         }

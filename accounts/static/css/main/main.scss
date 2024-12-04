@@ -22,19 +22,11 @@ a {
   font-size: 17px;
 }
 
-.light {
-  color: black;
-  background-color: rgb(224, 224, 224);
-  input,
-  select,
-  textarea {
-    background-color: white;
-    border: solid 0.3px rgb(0, 0, 0) !important;
-  }
-  .glue {
-    background-color: #fff;
-    border-radius: 10px;
-  }
+.glue {
+  background-color: inherit;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px #3b3b3b35;
+  padding: 10px;
 }
 .dark {
   color: white;

@@ -1,8 +1,10 @@
 import django_filters
 from .models import *
+from core.models import *
 
 
-class capacityBuildingFilter(django_filters.FilterSet):
+
+class MediaFilter(django_filters.FilterSet):
     class Meta:
-        model = capacityBuilding
-        fields = ("first_name","last_name", "designation", "gender", "resident","discipline")
+        model = Media
+        fields = ("fname", "lname", "role", "gender", "media_type")

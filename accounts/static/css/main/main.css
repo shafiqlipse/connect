@@ -25,19 +25,11 @@ a {
   font-size: 17px;
 }
 
-.light {
-  color: black;
-  background-color: rgb(224, 224, 224);
-}
-.light input,
-.light select,
-.light textarea {
-  background-color: white;
-  border: solid 0.3px rgb(0, 0, 0) !important;
-}
-.light .glue {
-  background-color: #fff;
+.glue {
+  background-color: inherit;
   border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px rgba(59, 59, 59, 0.2078431373);
+  padding: 10px;
 }
 
 .dark {
