@@ -5,49 +5,158 @@
 {% block title %}Verification{% endblock %}
 <!---->{% block content %}
 <div class="form-verification">
-  <div class="mail-page grid2">
-    <div class="left flex">
-      <img src="{%static 'images/media.jpg'%}" alt="">
+  <div class="main-page">
+ 
+
+            <div class="left">
+              <img src="{%static 'images/logo.png'%}" alt="">  
+              <h1>Register for USSSA Media Hub</h1>
+            </div>
+        
+          <div class="schooler">
+            <form
+              action=""
+              method="POST"
+              class="form-control"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+              <div class="schooled">
+                <div class="fields">
+                  {{ cform.non_field_errors }} {{ cform.errors }}
+                 
+                  {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    <li
+                      class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}"
+                    >
+                      {{ message }}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  <div class="lefut">
+                    <div class="imgbox">
+                      <div class="field">
+                        <label>{{form.profile_photo.label}} </label>
+                        <div id="profile_photos_preview" class="preview-container"></div>
+                      </div>
+                      <div class="field">
+                        <input
+                          type="file"
+                          name="profile_photo"
+                          accept="image/*"
+                          id="id_profile_photo"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="fiil grid2">
+                      <div class="field">
+                        <label>First Name</label>
+                        {{form.fname}}
+                      </div>
+                      <div class="field">
+                        <label>Last Name</label>
+                        {{form.lname}}
+                      </div>
+        
+                      <div class="field">
+                        <label>National ID Number</label>
+                        {{form.NIN}}
+                      </div>
+        
+                      <div class="field">
+                        <label>Nationality:</label>
+                        {{form.nationality}}
+                      </div>
+                      <div class="field">
+                        <label>Email:</label>
+                        {{form.personal_email}}
+                      </div>
+        
+                      <div class="field">
+                        <label>Contact</label>
+                        {{form.phone}}
+                      </div>
+                      <div class="field">
+                        <label>gender</label>
+                        {{form.gender}}
+                      </div>
+                      <div class="field">
+                        <label>Media House</label>
+                        {{form.media_house}}
+                      </div>
+                      <div class="field">
+                        <label>Media Type</label>
+                        {{form.media_type}}
+                      </div>
+        
+                      <div class="field">
+                        <label>Role</label>
+                        {{form.role}}
+                      </div>
+                      <div class="field">
+                        <label>Address</label>
+                        {{form.address}}
+                      </div>
+                    </div>
+                    <div class="fiil grid2">
+                      <div class="field">
+                        <label>National ID</label>
+                        {{form.nid}}
+                      </div>
+                      <div class="field">
+                        <label>Company ID</label>
+                        {{form.office_id}}
+                      </div>
+                     
+                    </div>
+                    <div class="fiil">
+                      <div class="field">
+                        <label>Bio Data</label>
+                        {{form.bio}}
+                      </div>
+                      <div class="field"> {{form.agree_to_terms}}
+                        <label>Accept our <a href="#">Terms and Conditions</a></label>
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
     </div>
-    <div class="lefwt">
-        <h1>Register for USSSA Media Hub</h1>
-        <form action="" method="POST" class="form-ctrl" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{form.as_p}}
-          <!-- Add this to your template -->
 
 
-
-          <button class="btn-submit" id="submit">Save</button>
-        </form>
-    </div>
-  </div>
-  
   <article class="copy-footer flex">
-    <h1>USSSA</h1>
+    <h1>USSSA MEDIA<span>HUB</span> </h1>
     <p> Copyright &#169 2024. All Rights Reserved</p>
   </article>
-<!-- Add this to your template -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Add this to your template -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+          // Change 'id_sport' to the actual ID of your 'sport' field
+          var sportCheckbox = $('#id_sport');
 
-  <script>
-    $(document).ready(function () {
-        // Change 'id_sport' to the actual ID of your 'sport' field
-        var sportCheckbox = $('#id_sport');
+          sportCheckbox.on('change', function () {
+              var checkedCount = sportCheckbox.filter(':checked').length;
 
-        sportCheckbox.on('change', function () {
-            var checkedCount = sportCheckbox.filter(':checked').length;
+              // Change the limit to your desired limit
+              var limit = 3;
 
-            // Change the limit to your desired limit
-            var limit = 3;
-
-            if (checkedCount > limit) {
-                $(this).prop('checked', false);
-                alert('You can only select up to ' + limit + ' sports.');
-            }
-        });
-    });
-</script>
+              if (checkedCount > limit) {
+                  $(this).prop('checked', false);
+                  alert('You can only select up to ' + limit + ' sports.');
+              }
+          });
+      });
+    </script>
 </div>
 
 {% endblock %}
+<!---->

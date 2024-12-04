@@ -1,71 +1,37 @@
 .form-verification {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eee;
-  flex-direction: column;
-  width: 100%;
-  height: 100vh;
+  background-color: #e8e8e8;
 }
-.form-verification .mail-page {
-  width: 90%;
+.form-verification .main-page {
   background-color: #fff;
-  box-shadow: 1px 1px 10px 1px #ddd;
-  border-radius: 10px;
+  width: 90%;
+  margin: auto;
 }
-.form-verification .mail-page .left {
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: #a70000;
-  color: #fff;
-  position: relative;
-}
-.form-verification .mail-page .left img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.form-verification .mail-page .left h1 {
-  font-weight: bold;
-  font-size: 2em;
-}
-.form-verification .mail-page .left h1 span {
-  font-weight: 500;
-}
-@media (max-width: 768px) {
-  .form-verification .mail-page .left {
-    height: 300px;
+@media (max-width: 1024px) {
+  .form-verification .main-page {
+    width: 100%;
   }
 }
-.form-verification .mail-page .lefwt {
-  padding: 20px;
-  justify-content: center;
-  flex-direction: column;
-}
-.form-verification .mail-page .lefwt h1 {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.2em;
-  text-transform: uppercase;
-  margin: 20px 0;
-}
-.form-verification .mail-page .lefwt h1 span {
-  font-weight: 500;
-}
-.form-verification .mail-page .lefwt .btn-submit {
-  text-align: center;
-  width: 100%;
-  text-transform: none;
-  margin: 20px auto;
+.form-verification .main-page .left {
+  width: 30%;
+  background-image: url(../../images/media.jpg);
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-repeat: no-repeat;
 }
 .form-verification .copy-footer {
-  margin: 20px 0;
+  padding: 10px;
+}
+@media (max-width: 768px) {
+  .form-verification .copy-footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 .form-verification .copy-footer h1 {
-  color: #a70000;
+  font-family: Bebas Neue;
+  font-weight: bold;
+}
+.form-verification .copy-footer h1 span {
+  color: red;
+  font-family: Bebas Neue;
 }/*# sourceMappingURL=acc_form.css.map */

@@ -33,16 +33,41 @@ class PasswordResetForm(forms.Form):
         fields = ["new_password1", "new_password2"]
 
 
-from django.forms.widgets import CheckboxSelectMultiple
-
-
+# from django.forms.widgets import CheckboxSelectMultiple
 
 
 class MediaForm(forms.ModelForm):
     class Meta:
         model = Media
-        fields = "__all__"
+        fields = [
+            "fname",
+            "lname",
+            "NIN",
+            "nationality",
+            "profile_photo",
+            "office_id",
+            "nid",
+            "media_house",
+            "media_type",
+            "role",
+            "bio",
+            "phone",
+            "personal_email",
+            "address",
+            "gender",
+            "agree_to_terms",
+        ]
         widgets = {
-            "agree_to_terms": forms.CheckboxInput(),
-            "sport": CheckboxSelectMultiple(),
+            "fname": forms.TextInput(attrs={"class": "form-control"}),
+            "lname": forms.TextInput(attrs={"class": "form-control"}),
+            "school": forms.TextInput(attrs={"class": "form-control"}),
+            "media_house": forms.TextInput(attrs={"class": "form-control"}),
+            "personal_email": forms.TextInput(attrs={"class": "form-control"}),
+            "phone": forms.TextInput(attrs={"class": "form-control"}),
+            "NIN": forms.TextInput(attrs={"class": "form-control"}),
+            "nationality": forms.TextInput(attrs={"class": "form-control"}),
+            "media_type": forms.Select(attrs={"class": "form-control"}),
+            "role": forms.Select(attrs={"class": "form-control"}),
+            "address": forms.TextInput(attrs={"class": "form-control"}),
+            "gender": forms.Select(attrs={"class": "form-control"}),
         }

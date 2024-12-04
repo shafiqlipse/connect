@@ -15,7 +15,7 @@ class Media(models.Model):
     nationality = models.CharField(max_length=50)
     media_house = models.CharField(max_length=100, null=True, blank=True, default="")
     address = models.CharField(max_length=100, null=True, blank=True, default="")
-    email = models.EmailField(max_length=100, null=True, blank=True, default="")
+    email = models.EmailField(max_length=100, unique=True, default="")
     phone = models.CharField(max_length=100, null=True, blank=True, default="")
     media_type = models.CharField(
         max_length=50,
@@ -75,8 +75,7 @@ class Media(models.Model):
         null=True,
         default="http://localhost:8000/static/images/profile.png",
     )
-    NIN = models.CharField(max_length=122, null=True, blank=True, unique=True)
-    phone = models.IntegerField(null=True, blank=True)
+    NIN = models.CharField(max_length=122, unique=True)
     status = models.CharField(max_length=10, choices=status_choices, default="pending")
     agree_to_terms = models.BooleanField(
         default=False,
