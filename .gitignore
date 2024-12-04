@@ -1,0 +1,19 @@
+# Django settings
+people/settings.py
+
+# Django migrations
+accounts/migrations/*
+events/migrations/*
+core/migrations/*
+uploads/
+
+
+# Media and uploaded files (one level up)
+# athlete_photos/
+# agm_photo/
+# trainee_photo/
+# trainee_photos/
+# transfer_documents/
+# certificates/
+# badge/
+# qr_codes/
