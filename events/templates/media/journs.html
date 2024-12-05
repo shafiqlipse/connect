@@ -19,7 +19,6 @@
         {% csrf_token %}
         <input type="submit" name="Certificate" value="Certificate" />
       </form>
-     
     </div>
   </div>
   <div class="filter flex">
@@ -62,17 +61,15 @@
           {% for journs in journs_filter.qs %}
           <tr>
             <td>
-              <a href=""
-                >{{journs.fname}} {{journs.lname}}</a
-              >
+              <a href="">{{journs.fname}} {{journs.lname}}</a>
             </td>
             <td>{{journs.media_house}}</td>
 
             <td>{{journs.role}}</td>
             <td>{{journs.gender}}</td>
             <td>{{journs.status}}</td>
-            <td><a href="">Activate</a></td>
-           
+            <td><a href="{%url 'activate_journalist' journs.id %}">Activate</a></td>
+
             <td>
               <a href="">delete</a>
             </td>

@@ -6,7 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistrationForm
-
+from core.models import *
 from .models import User, UserProfile
 from django.contrib import messages
 
@@ -59,3 +59,15 @@ def user_logout(request):
 
 def custom_404(request, exception):
     return render(request, "account/custom404.html", {}, status=404)
+
+
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
+
+def activate_journalist(request, id):
+    journalist = get_object_or_404(Media, id=id)
+    journalist.status = "Active"
+    journalist.save()
+    response_data = {"message": "Journalist activated successfully."}
+    return JsonResponse(response_data)

@@ -25,6 +25,7 @@ from django.db import IntegrityError
 from django.core.files.base import ContentFile
 import base64
 
+
 # Create your views here.
 # @school_required
 def register(request):
@@ -49,9 +50,6 @@ from xhtml2pdf import pisa
 from io import BytesIO
 
 
-
-
-
 def journs(request):
     # Get all journs
     journs = Media.objects.all()
@@ -63,7 +61,7 @@ def journs(request):
     if request.method == "POST":
         # Check which form was submitted
         if "Accreditation" in request.POST:
-            template = get_template("acred.html")
+            template = get_template("media/acred.html")
             filename = "Delegate_Accreditation.pdf"
         elif "Certificate" in request.POST:
             template = get_template(
@@ -93,8 +91,7 @@ def journs(request):
         return response
     else:
         # Render the filter form
-         return render(request, "media/journs.html", {"journs_filter":journs_filter})
-
+        return render(request, "media/journs.html", {"journs_filter": journs_filter})
 
 
 # # Events details......................................................
@@ -153,6 +150,14 @@ def eventupdate(request, id):
         form = EventForm(instance=event)
     context = {"form": form}
     return render(request, "event/newevent.html", context)
+
+
+# def eventupdate(request, id):
+def journ_detail(request, id):
+    journ = get_object_or_404(Media, id=id)
+
+    context = {"journ": journ}
+    return render(request, "media/journ.html", context)
 
 
 # def (request,id):------------------------------------------------------------------

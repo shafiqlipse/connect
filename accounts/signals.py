@@ -29,7 +29,7 @@ def media_status_handler(sender, instance, **kwargs):
             user.save()
 
             # Create UserProfile for the user
-            UserProfile.objects.create(user=user)
+            instance.user = user
 
             # Generate a unique token for the user (if needed for other purposes)
             # uid = urlsafe_base64_encode(force_bytes(user.pk))

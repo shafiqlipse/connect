@@ -4,8 +4,8 @@ from accounts.models import User
 # Create your models here.
 status_choices = [
     ("pending", "Pending"),
-    ("accepted", "Accepted"),
-    ("rejected", "Rejected"),
+    ("Active", "Active"),
+    ("Inactive", "Inactive"),
 ]
 
 
