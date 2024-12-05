@@ -1,45 +1,57 @@
+import secrets
+import string
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import User, UserProfile
+from .models import User, User
 from django.core.mail import send_mail
 from core.models import Media
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created and instance.is_media:
-        UserProfile.objects.create(user=instance)
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
+from django.contrib.auth.hashers import make_password
 
 
 @receiver(post_save, sender=Media)
-def media_status_handler(sender, instance, **kwargs):
-    instance._original_status = "pending"
-    if instance.status == "accepted":
-        # Check if the user with the email exists
-        user = User.objects.filter(email=instance.email).first()
-        if not user:  # If user does not exist, create a new one
-            user = User.objects.create_user(
-                username=instance.email,
-                is_media=True,
-                email=instance.email,
-            )
+def create_journalist(sender, instance, created, **kwargs):
+    if instance.status == "Active" and not created:
+        # Officer's status changed to Active
+        # Generate username based on first name and last name
+        username = instance.email
+        email = instance.email
 
-            # Additional user profile fields can be updated here
-            # For example, user.profile.bio = instance.bio
-            user.save()
+        # Check if user with the officer's email already exists
+        user_exists = User.objects.filter(email=email).exists()
 
-            # Create UserProfile for the user
-            instance.user = user
+        if not user_exists:
+            # Generate a stronger random password
 
-            # Generate a unique token for the user (if needed for other purposes)
-            # uid = urlsafe_base64_encode(force_bytes(user.pk))
-            # token = default_token_generator.make_token(user)
+            password = f"U{instance.phone[3:7]}2024"
 
-            # Sending confirmation email with the login link
-            send_mail(
-                "Account Approved",
-                f"Your account has been approved. Click the following link to set your password:{user.email} ",
-                "noreply@example.com",
-                [instance.email],
-                fail_silently=True,  # Change to False for debugging, True for production
-            )
+            try:
+                # Create user with username and password
+                user = User.objects.create_user(
+                    username=username, password=password, email=email, is_media=True
+                )
+                instance.user = user
+                instance.save()
+
+                # Prepare the email content
+                subject = "Your account has been activated"
+                message = render_to_string(
+                    "account/email.html",
+                    {
+                        "username": username,
+                        "password": password,
+                    },
+                )
+
+                # Send the email with HTML content
+                send_mail(
+                    subject,  # Subject
+                    "",  # Plain text message (empty if HTML is used)
+                    "noreply@example.com",  # Sender email
+                    [email],  # Recipient email
+                    html_message=message,  # HTML content
+                )
+            except Exception as e:
+                # Handle any errors during user creation or email sending
+                print(f"Error: {e}")
