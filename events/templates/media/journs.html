@@ -61,7 +61,7 @@
           {% for journs in journs_filter.qs %}
           <tr>
             <td>
-              <a href="">{{journs.fname}} {{journs.lname}}</a>
+              <a href="{%url 'journ_detail' journs.id%}">{{journs.fname}} {{journs.lname}}</a>
             </td>
             <td>{{journs.media_house}}</td>
 
