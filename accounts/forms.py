@@ -52,7 +52,7 @@ class MediaForm(forms.ModelForm):
             "role",
             "bio",
             "phone",
-            "personal_email",
+            "email",
             "address",
             "gender",
             "agree_to_terms",

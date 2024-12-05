@@ -62,7 +62,6 @@ class Media(models.Model):
         blank=True,
         null=True,
     )
-    personal_email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
     profile_photo = models.ImageField(
         upload_to="photo/",
