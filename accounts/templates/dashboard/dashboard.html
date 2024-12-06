@@ -178,7 +178,7 @@
         data-scroll="true"
       >
         <div class="container-fluid py-1 px-3 flex">
-          <h2>{{user}}</h2>
+          <h2>{{user.first_name}} {{user.last_name}}</h2>
           <div
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
             id="navbar"
@@ -652,5 +652,6 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{% static 'assets/js/material-dashboard.min.js'%}"></script>
+    <script src="{% static 'js/opper.js'%}"></script>
   </body>
 </html>

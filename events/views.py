@@ -24,32 +24,15 @@ from .forms import *
 from django.db import IntegrityError
 from django.core.files.base import ContentFile
 import base64
-
-
-# Create your views here.
-# @school_required
-def register(request):
-    if request.method == "POST":
-        form = CapacityForm(request.POST)
-        if form.is_valid():
-            form.save()
-
-            return redirect("trainees")
-        else:
-            # Attach errors to the form for display in the template
-            error_message = "There was an error in the form submission. Please correct the errors below."
-    else:
-        form = CapacityForm()
-
-    return render(request, "capacityb/capacity.html", {"form": form})
-
-
+from accounts.decorators import staff_required, media_required, anonymous_required
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from io import BytesIO
 
 
+@staff_required
 def journs(request):
     # Get all journs
     journs = Media.objects.all()
@@ -94,7 +77,7 @@ def journs(request):
         return render(request, "media/journs.html", {"journs_filter": journs_filter})
 
 
-# # Events details......................................................
+@login_required(login_url="login")
 def EventDetail(request, id):
     event = get_object_or_404(Event, id=id)
     relatedevents = Event.objects.filter(event_type=event.event_type).exclude(id=id)
@@ -108,7 +91,7 @@ def EventDetail(request, id):
 
 # # Events details......................................................
 # event admin or user list
-# @login_required(login_url='login')
+@login_required(login_url="login")
 def eventlist(request):
     events = Event.objects.all()
 
@@ -118,7 +101,7 @@ def eventlist(request):
 
 
 # # news Event creation.....................................................
-# @login_required(login_url='login')
+@staff_required
 def newevent(request):
     if request.method == "POST":
         form = EventForm(request.POST, request.FILES)
@@ -136,7 +119,7 @@ def newevent(request):
 
 
 # # Event update page-----------------------------------------------------------------------
-# @login_required(login_url='login')
+@staff_required
 def eventupdate(request, id):
     event = Event.objects.get(id=id)
 
@@ -152,7 +135,7 @@ def eventupdate(request, id):
     return render(request, "event/newevent.html", context)
 
 
-# def eventupdate(request, id):
+@staff_required
 def journ_detail(request, id):
     journ = get_object_or_404(Media, id=id)
 
@@ -162,6 +145,7 @@ def journ_detail(request, id):
 
 # def (request,id):------------------------------------------------------------------
 # @login_required(login_url='login')
+@staff_required
 def deleteevent(request, id):
     stud = Event.objects.get(id=id)
     if request.method == "POST":

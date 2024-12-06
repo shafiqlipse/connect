@@ -7,7 +7,6 @@ from accounts.views import activate_journalist
 
 
 urlpatterns = [
-    path("newtrainee/", register, name="newtrainee"),
     path("newevent/", newevent, name="newevent"),
     path("activate/<int:id>", activate_journalist, name="activate_journalist"),
     path("events/", eventlist, name="eventlist"),

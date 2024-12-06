@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.forms import MediaForm
 from core.models import Media
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 def home(request):
     context = {}
-    return render(request, "main/home.html", context)
+    return render(request, "media/acc.html", context)
 
 
 def accreditation(request):
@@ -27,7 +28,7 @@ def accreditaionform(request):
         form = MediaForm()
     return render(request, "media/acc_form.html", {"form": form})
 
-
+@login_required
 def update_journalist(request, id):
     jounalist = get_object_or_404(Media, id=id)
 

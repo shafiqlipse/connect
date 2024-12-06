@@ -65,9 +65,7 @@ class Media(models.Model):
     phone = models.CharField(max_length=30, blank=True, null=True)
     profile_photo = models.ImageField(
         upload_to="photo/",
-        blank=True,
-        null=True,
-        default="http://localhost:8000/static/images/profile.png",
+        default="https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
     )
     office_id = models.ImageField(
         upload_to="ids/",

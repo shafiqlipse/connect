@@ -8,7 +8,7 @@ from core.views import *
 
 
 urlpatterns = [
-    # path("", home, name="home"),
+    path("", home, name="home"),
     path("dashboard/", dashboard, name="dashboard"),
     path("login/", user_login, name="login"),
     path("logout/", user_logout, name="logout"),

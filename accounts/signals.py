@@ -17,6 +17,8 @@ def create_journalist(sender, instance, created, **kwargs):
         # Generate username based on first name and last name
         username = instance.email
         email = instance.email
+        first_name =instance.fname
+        last_name =instance.lname
 
         # Check if user with the officer's email already exists
         user_exists = User.objects.filter(email=email).exists()

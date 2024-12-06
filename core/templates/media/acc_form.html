@@ -2,12 +2,11 @@
 <!---->
 {% load static %}
 <!---->
-{% block title %}Verification{% endblock %}
-<!---->{% block content %}
+{% block title %}MEDIA{% endblock %}
+<!---->
+{% block content %}
 <div class="form-verification">
   <div class="main-page">
-
-        
           <div class="schooler">
             <div class="left flex">
               
@@ -128,33 +127,13 @@
               </div>
             </form>
           </div>
-    </div>
-
-
-  <article class="copy-footer flex">
+  </div>
+ <!-- Add this to your template -->
+  <div class="copy-footer flex">
     <h1>USSSA MEDIA<span>HUB</span> </h1>
     <p> Copyright &#169 2024. All Rights Reserved</p>
-  </article>
+  </div>
   <!-- Add this to your template -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-      $(document).ready(function () {
-          // Change 'id_sport' to the actual ID of your 'sport' field
-          var sportCheckbox = $('#id_sport');
-
-          sportCheckbox.on('change', function () {
-              var checkedCount = sportCheckbox.filter(':checked').length;
-
-              // Change the limit to your desired limit
-              var limit = 3;
-
-              if (checkedCount > limit) {
-                  $(this).prop('checked', false);
-                  alert('You can only select up to ' + limit + ' sports.');
-              }
-          });
-      });
-    </script>
 </div>
 
 {% endblock %}

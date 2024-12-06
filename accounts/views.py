@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from accounts.decorators import school_required, anonymous_required
+from accounts.decorators import staff_required, media_required, anonymous_required
 from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.contrib.auth import login
@@ -33,12 +33,12 @@ def user_login(request):
                 if profile:
                     messages.info(request, "Welcome back!")
                     return redirect(
-                        "mediaproile"
+                        "mediaprofile"
                     )  # Redirect to home for school users with a profile
                 else:
                     messages.info(request, "Welcome! Please complete your  profile.")
                     return redirect(
-                        "profile"
+                        "dashboard"
                     )  # Adjust the URL name for your create school profile view
             # else:
             # If the user is not a school, log in and redirect to dashboard
