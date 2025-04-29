@@ -1,12 +1,139 @@
 {% extends "dashboard/dashboard.html" %}
 
 <!--static-->
-{% block title %}Trainees{% endblock %}
+{% block title %}{{event}}{% endblock %}
 <!--static-->
 {% load static %}
 <!--khfufufu-->
 {% block content %}
-<div class="officials-page">
-  
+<div id="app-content">
+  <!-- Container fluid -->
+  <div class="app-content-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- Page header -->
+          <div class="mb-5">
+            <h3 class="mb-0">Event Details</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- card body -->
+              <div class="card-body p-5">
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="product" id="product">
+                      <div>
+                        <div>
+                          <!-- img -->
+                          <img
+                            src="{{event.event_photo.url}}"
+                            alt=""
+                            class="img-fluid"
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- product tools -->
+                  </div>
+                  <div class="col-xl-6 col-12">
+                    <div class="my-5 mx-xl-10">
+                      <div>
+                        <!-- heading -->
+                        <h1>{{event.title}}</h1>
+                        <div>
+                          <!-- review -->
+                          <span>{{event.event_type}}</span>
+                        </div>
+                      </div>
+                      <hr class="my-3" />
+                      <div class="mb-5">
+                        <!-- heading -->
+                        <h4 class="mb-1">
+                          STARTING FROM
+                          <span class="text-primary">{{event.start_date}}</span>
+                          <span class="text-muted text-decoration-line-through"
+                            >{{event.end_date}}</span
+                          >
+                          <span class="text-warning"></span>
+                        </h4>
+                        <span>inclusive of Weekends</span>
+                      </div>
+
+                      <!-- row -->
+                      <div class="row">
+                        <!-- col -->
+                         {% if user.is_media %}
+                        <div class="col-md-6">
+                          <div class="d-grid mb-2 mb-md-0">
+                            <!-- btn -->
+                            <a href="#!" class="btn btn-danger"
+                              ><i class="fe fe-shopping-cart me-2"></i>Request Accreditation</a
+                            >
+                          </div>
+                        </div>
+                        <!-- col -->
+                        {% endif %}
+                      </div>
+                      <hr class="mt-4 mb-2" />
+                      <div class="mb-4" id="ecommerceAccordion">
+                        <!-- List group -->
+
+                        <ul class="list-group list-group-flush">
+                          <!-- List group item -->
+                          <li class="list-group-item px-0">
+                            <!-- Toggle -->
+                            <a
+                              class="d-flex align-items-center text-inherit text-decoration-none h4 mb-0"
+                              data-bs-toggle="collapse"
+                              href="#productDetails"
+                              role="button"
+                              aria-expanded="false"
+                              aria-controls="productDetails"
+                            >
+                              <div class="me-auto">Description</div>
+                              <!-- Chevron -->
+                              <span class="chevron-arrow ms-4">
+                                <i
+                                  data-feather="chevron-down"
+                                  class="icon-xs"
+                                ></i>
+                              </span>
+                            </a>
+                            <!-- Row -->
+                            <!-- Collapse -->
+                            <div
+                              class="collapse show"
+                              id="productDetails"
+                              data-bs-parent="#ecommerceAccordion"
+                            >
+                              <div class="py-3">
+                                <p>
+                       {{event.description}}
+                                </p>
+
+           
+                              </div>
+                            </div>
+                          </li>
+
+                      </div>
+                
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

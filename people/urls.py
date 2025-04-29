@@ -20,4 +20,8 @@ urlpatterns = [
     path("accreditation_form/", accreditaionform, name="accform"),
     path("media/journalists/", journs, name="journs"),
     path("media/journalist/<int:id>", update_journalist, name="journalist"),
+    # path("media/journalist/<int:id>", update_journalist, name="journalist"),
+    
+    # path("media/journalist/<int:id>", update_journalist, name="journalist"),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,34 +7,35 @@
 {% block content %}
 <div class="form-verification">
   <div class="main-page">
+
           <div class="schooler">
-            <div class="left flex">
-              
-              <h1>Register for USSSA Media Hub</h1>
-            </div>
+      
             <form
               action=""
               method="POST"
-              class="form-control"
+              class="formontrol "
               enctype="multipart/form-data"
             >
               {% csrf_token %}
               <div class="schooled">
                 <div class="fields">
-                  {{ cform.non_field_errors }} {{ cform.errors }}
-                 
-                  {% if messages %}
-                  <ul class="messages">
-                    {% for message in messages %}
-                    <li
-                      class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}"
-                    >
-                      {{ message }}
-                    </li>
-                    {% endfor %}
-                  </ul>
-                  {% endif %}
-                  <div class="lefut">
+                  <div class="errors">
+                    {{ cform.non_field_errors }} {{ cform.errors }}
+                  
+                    {% if messages %}
+                    <ul class="messages">
+                      {% for message in messages %}
+                      <li
+                        class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}"
+                      >
+                        {{ message }}
+                      </li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="lefut flex">
                     <div class="imgbox">
                       <div class="field">
                         <label>{{form.profile_photo.label}} </label>
@@ -99,8 +100,7 @@
                         <label>Address</label>
                         {{form.address}}
                       </div>
-                    </div>
-                    <div class="fiil grid2">
+              
                       <div class="field">
                         <label>National ID</label>
                         {{form.nid}}
@@ -109,22 +109,21 @@
                         <label>Company ID</label>
                         {{form.office_id}}
                       </div>
-                     
-                    </div>
-                    <div class="fiil">
+
                       <div class="field">
                         <label>Bio Data</label>
                         {{form.bio}}
                       </div>
-                      <div class="fild"> {{form.agree_to_terms}}
+                      <div class="field"> {{form.agree_to_terms}}
                         <label>Accept our <a href="#">Terms and Conditions</a></label>
-                       
                       </div>
+                
+                        <button type="submit" class="btn btn-submit">Submit</button>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-submit">Submit</button>
                 </div>
               </div>
+              
             </form>
           </div>
   </div>

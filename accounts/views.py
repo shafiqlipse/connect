@@ -64,10 +64,9 @@ def custom_404(request, exception):
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-
 def activate_journalist(request, id):
     journalist = get_object_or_404(Media, id=id)
     journalist.status = "Active"
     journalist.save()
-    response_data = {"message": "Journalist activated successfully."}
-    return JsonResponse(response_data)
+    messages.success(request, "Journalist activated successfully.")
+    return redirect("journs")

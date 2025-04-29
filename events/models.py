@@ -5,7 +5,7 @@ from accounts.models import User
 etypes = (
     ("Press Conference", "Press Conference"),
     ("Engagement", "Engagement"),
-    ("Symposium", "Symposium"),
+    ("Championships", "Championships"),
     ("Meeting", "Meeting"),
     ("Webinar", "Webinar"),
     ("Seminar", "Seminar"),
@@ -36,6 +36,18 @@ class Event(models.Model):
         null=True,
         default="http://localhost:8000/static/images/profile.png",
     )
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+class AccreditationRequest(models.Model):
+    journalist = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'journalist'})
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    reason = models.TextField()
+    status = models.CharField(
+        max_length=20,
+        choices=[('pending', 'Pending'), ('approved', 'Approved'), ('rejected', 'Rejected')],
+        default='pending'
+    )
+    submitted_at = models.DateTimeField(auto_now_add=True)

@@ -60,6 +60,7 @@ class MediaForm(forms.ModelForm):
         widgets = {
             "fname": forms.TextInput(attrs={"class": "form-control"}),
             "lname": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.TextInput(attrs={"class": "form-control"}),
             "school": forms.TextInput(attrs={"class": "form-control"}),
             "media_house": forms.TextInput(attrs={"class": "form-control"}),
             "personal_email": forms.TextInput(attrs={"class": "form-control"}),
@@ -69,5 +70,6 @@ class MediaForm(forms.ModelForm):
             "media_type": forms.Select(attrs={"class": "form-control"}),
             "role": forms.Select(attrs={"class": "form-control"}),
             "address": forms.TextInput(attrs={"class": "form-control"}),
+            "bio": forms.Textarea(attrs={"class": "form-control"}),
             "gender": forms.Select(attrs={"class": "form-control"}),
         }

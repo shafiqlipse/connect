@@ -38,8 +38,7 @@ def journs(request):
     journs = Media.objects.all()
 
     # Apply the filter
-    journs_filter = MediaFilter(request.GET, queryset=journs)
-    alljourns = journs_filter.qs
+  
 
     if request.method == "POST":
         # Check which form was submitted
@@ -55,7 +54,7 @@ def journs(request):
             return HttpResponse("Invalid form submission")
 
         # Generate PDF
-        context = {"alljourns": alljourns}
+        context = {"journs": journs}
         html = template.render(context)
 
         # Create a PDF
@@ -74,23 +73,43 @@ def journs(request):
         return response
     else:
         # Render the filter form
-        return render(request, "media/journs.html", {"journs_filter": journs_filter})
+        return render(request, "media/journs.html", {"journs": journs})
 
 
 @login_required(login_url="login")
 def EventDetail(request, id):
     event = get_object_or_404(Event, id=id)
     relatedevents = Event.objects.filter(event_type=event.event_type).exclude(id=id)
-    recent = Event.objects.all().order_by("-Created")[:10]
+    recent = Event.objects.all().order_by("-created_at")[:10]
     # new_comment_reply = None
 
     context = {"event": event, "recent": recent, "relatedevents": relatedevents}
 
-    return render(request, "events/event.html", context)
+    return render(request, "event/event.html", context)
 
 
 # # Events details......................................................
 # event admin or user list
+@login_required(login_url="login")
+def eventlist(request):
+    events = Event.objects.all()
+
+    context = {"events": events}
+
+    return render(request, "event/eventlist.html", context)
+
+@login_required(login_url="login")
+def eventlist(request):
+    events = Event.objects.all()
+    context = {"events": events}
+    return render(request, "event/eventlist.html", context)
+
+@login_required(login_url="login")
+def champlist(request):
+    championships = Event.objects.filter(event_type="Championships")
+    context = {"championships": championships}
+    return render(request, "event/event_grid.html", context)
+
 @login_required(login_url="login")
 def eventlist(request):
     events = Event.objects.all()

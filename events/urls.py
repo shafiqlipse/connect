@@ -9,8 +9,12 @@ from accounts.views import activate_journalist
 urlpatterns = [
     path("newevent/", newevent, name="newevent"),
     path("activate/<int:id>", activate_journalist, name="activate_journalist"),
+    # path("activate/<int:id>", activate_journalist, name="activate_journalist"),
     path("events/", eventlist, name="eventlist"),
-    path("event/<int:id>", eventlist, name="event"),
+    path("championships/", champlist, name="championships"),
+    # path("events/", eventlist, name="eventlist"),
+    # path("events/", eventlist, name="eventlist"),
+    path("event/<int:id>", EventDetail, name="event"),
     path("journ/<int:id>", journ_detail, name="journ_detail"),
     path("eventupdate/<int:id>", eventupdate, name="eventupdate"),
     path("eventdelete/<int:id>", deleteevent, name="eventdelete"),

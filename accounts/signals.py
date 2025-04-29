@@ -1,42 +1,37 @@
-import secrets
-import string
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import User, User
 from django.core.mail import send_mail
-from core.models import Media
-from django.utils.html import strip_tags
 from django.template.loader import render_to_string
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth import get_user_model
+from core.models import Media
 
+User = get_user_model()
 
 @receiver(post_save, sender=Media)
 def create_journalist(sender, instance, created, **kwargs):
-    if instance.status == "Active" and not created:
-        # Officer's status changed to Active
-        # Generate username based on first name and last name
-        username = instance.email
-        email = instance.email
-        first_name =instance.fname
-        last_name =instance.lname
-
-        # Check if user with the officer's email already exists
-        user_exists = User.objects.filter(email=email).exists()
-
-        if not user_exists:
-            # Generate a stronger random password
-
-            password = f"U{instance.phone[3:7]}2024"
-
+    if instance.status == "Active" and not created and not instance.user:
+        # Check if user with the email already exists
+        if not User.objects.filter(email=instance.email).exists():
             try:
-                # Create user with username and password
-                user = User.objects.create_user(
-                    username=username, password=password, email=email, is_media=True
-                )
-                instance.user = user
-                instance.save()
+                # Generate credentials
+                username = instance.email
+                password = f"U{instance.phone[3:7]}@2025"
 
-                # Prepare the email content
+                # Create the user
+                user = User.objects.create_user(
+                    username=username,
+                    password=password,
+                    email=instance.email,
+                    is_media=True,
+                    first_name=instance.fname,
+                    last_name=instance.lname,
+                )
+
+                # Link user to journalist
+                instance.user = user
+                Media.objects.filter(id=instance.id).update(user=user)  # avoid calling instance.save()
+
+                # Send email
                 subject = "Your account has been activated"
                 message = render_to_string(
                     "account/email.html",
@@ -46,14 +41,13 @@ def create_journalist(sender, instance, created, **kwargs):
                     },
                 )
 
-                # Send the email with HTML content
                 send_mail(
-                    subject,  # Subject
-                    "",  # Plain text message (empty if HTML is used)
-                    "noreply@example.com",  # Sender email
-                    [email],  # Recipient email
-                    html_message=message,  # HTML content
+                    subject,
+                    "",
+                    "noreply@example.com",
+                    [instance.email],
+                    html_message=message,
                 )
+
             except Exception as e:
-                # Handle any errors during user creation or email sending
-                print(f"Error: {e}")
+                print(f"[SIGNAL ERROR] Failed to create user for journalist: {e}")

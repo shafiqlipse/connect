@@ -1,114 +1,172 @@
 {% extends "dashboard/dashboard.html" %}
-
-<!--static-->
-{% block title %}Events{% endblock %}
-<!--static-->
+<!---->
 {% load static %}
-<!--khfufufu-->
+<!---->
+{% block title %} | Dashboard{% endblock %}
+<!---->
 {% block content %}
-<div class="events-page">
-  <div class="eves flex">
-    <h1>Events</h1>
-    <a href="{% url 'newevent'%}" class="btn-submit">Add Event</a>
-  </div>
-  <div class="eventslist glue">
-    <div class="card-body px-0 pb-2">
-      <div class="table-responsive p-0">
-        <table class="table align-items-center mb-0">
-          <thead>
-            <tr>
-              <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Title
-              </th>
-              <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-              >
-                Event type
-              </th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Organiser
-              </th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Date
-              </th>
-              <th class="text-secondary opacity-7"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for event in events%}
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="{{event.event_photo.url}}"
-                      class="avatar avatar-sm me-3 border-radius-lg"
-                      alt="user1"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{event.title}}</h6>
-                    <p class="text-xs text-secondary mb-0">
-                      {{event.event_type}}
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">{{event.organiser}}</p>
-                <p class="text-xs text-secondary mb-0">{{event.venue}}</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success"
-                  >{{event.start_date}}</span
+<!-- Content Wrapper START -->
+<!-- Page Content -->
+
+<div id="app-content">
+  <!-- Container fluid -->
+  <div class="app-content-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- Page header -->
+          <div class="mb-5">
+            <h3 class="mb-0">Evemts</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-12">
+          <div class="card p10-0">
+            <div class="card-header d-md-flex border-bottom-0">
+              {% if user.is_admin %}
+              <div class="flex-grow-1">
+                <a href="{% url 'newevent'%}" class="btn btn-primary"
+                  >+ Add Event</a
                 >
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold"
-                  >{{event.end_date}}</span
-                >
-              </td>
-              <td class="align-middle">
+              </div>
+              <div class="mt-3 mt-md-0">
                 <a
-                  href="{% url 'eventupdate' event.id%}"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
+                  href="#!"
+                  class="btn btn-ghost btn-icon btn-sm rounded-circle texttooltip"
+                  data-template="settingOne"
                 >
-                  Edit
+                  <i data-feather="settings" class="icon-xs"></i>
+                  <div id="settingOne" class="d-none">
+                    <span>Setting</span>
+                  </div>
                 </a>
-              </td>
-            </tr>
-            {%endfor%}
-          </tbody>
-        </table>
+
+                <a href="#!" class="btn btn-outline-white ms-2">Import</a>
+                <a href="#!" class="btn btn-outline-white ms-2">Export</a>
+              </div>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <div class="table-responsive table-card">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        Title
+                      </th>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                      >
+                        Event type
+                      </th>
+                      <th
+                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        Organiser
+                      </th>
+                      <th
+                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        Start Date
+                      </th>
+                      <th
+                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        End Date
+                      </th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for event in events%}
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img
+                              src="{{event.event_photo.url}}"
+                              class="avatar avatar-sm me-3 border-radius-lg"
+                              alt="user1"
+                            />
+                          </div>
+                          <a
+                            href="{% url 'event' event.id %}"
+                            class="d-flex flex-column justify-content-center"
+                          >
+                            <h6 class="mb-0 text-sm">{{event.title}}</h6>
+                            <p class="text-xs text-secondary mb-0">
+                              {{event.event_type}}
+                            </p>
+                          </a>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">
+                          {{event.organiser}}
+                        </p>
+                      </td>
+                      <td>
+                        <p class="text-xs text-secondary mb-0">
+                          {{event.venue}}
+                        </p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success"
+                          >{{event.start_date}}</span
+                        >
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"
+                          >{{event.end_date}}</span
+                        >
+                      </td>
+                      <td class="align-middle">
+                        <a
+                          href="{% url 'eventupdate' event.id%}"
+                          class="text-secondary font-weight-bold text-xs"
+                          data-toggle="tooltip"
+                          data-original-title="Edit user"
+                        >
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                    {%endfor%}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {% comment %}
+            <div class="pagination">
+              <span class="step-links">
+                {% if eventslist.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ eventslist.previous_page_number }}"
+                  >previous</a
+                >
+                {% endif %}
+
+                <span class="current">
+                  Page {{eventslist.number }} of
+                  {{eventslist.paginator.num_pages}}
+                </span>
+
+                {% if officiallist.has_next %}
+                <a href="?page={{ eventslist.next_page_number }}">next</a>
+                <a href="?page={{ eventslist.paginator.num_pages }}"
+                  >last &raquo;</a
+                >
+                {% endif %}
+              </span>
+            </div>
+            {% endcomment %}
+          </div>
+        </div>
       </div>
     </div>
-    {% comment %}
-    <div class="pagination">
-      <span class="step-links">
-        {% if eventslist.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ eventslist.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-          Page {{eventslist.number }} of {{eventslist.paginator.num_pages}}
-        </span>
-
-        {% if officiallist.has_next %}
-        <a href="?page={{ eventslist.next_page_number }}">next</a>
-        <a href="?page={{ eventslist.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-      </span>
-    </div>
-    {% endcomment %}
   </div>
 </div>
 {% endblock %}
