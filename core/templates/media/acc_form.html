@@ -7,132 +7,109 @@
 {% block content %}
 <div class="form-verification">
   <div class="main-page">
-
-          <div class="schooler">
-      
-            <form
-              action=""
-              method="POST"
-              class="formontrol "
-              enctype="multipart/form-data"
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="right flex">
+        <div class="right">
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li
+              class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
             >
-              {% csrf_token %}
-              <div class="schooled">
-                <div class="fields">
-                  <div class="errors">
-                    {{ cform.non_field_errors }} {{ cform.errors }}
-                  
-                    {% if messages %}
-                    <ul class="messages">
-                      {% for message in messages %}
-                      <li
-                        class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}"
-                      >
-                        {{ message }}
-                      </li>
-                      {% endfor %}
-                    </ul>
-                    {% endif %}
-                  </div>
-                  
-                  <div class="lefut flex">
-                    <div class="imgbox">
-                      <div class="field">
-                        <label>{{form.profile_photo.label}} </label>
-                        <div id="profile_photos_preview" class="preview-container"></div>
-                      </div>
-                      <div class="field">
-                        <input
-                          type="file"
-                          name="profile_photo"
-                          accept="image/*"
-                          id="id_profile_photo"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div class="fiil grid2">
-                      <div class="field">
-                        <label>First Name</label>
-                        {{form.fname}}
-                      </div>
-                      <div class="field">
-                        <label>Last Name</label>
-                        {{form.lname}}
-                      </div>
-        
-                      <div class="field">
-                        <label>National ID Number</label>
-                        {{form.NIN}}
-                      </div>
-        
-                      <div class="field">
-                        <label>Nationality:</label>
-                        {{form.nationality}}
-                      </div>
-                      <div class="field">
-                        <label>Email:</label>
-                        {{form.email}}
-                      </div>
-        
-                      <div class="field">
-                        <label>Contact</label>
-                        {{form.phone}}
-                      </div>
-                      <div class="field">
-                        <label>gender</label>
-                        {{form.gender}}
-                      </div>
-                      <div class="field">
-                        <label>Media House</label>
-                        {{form.media_house}}
-                      </div>
-                      <div class="field">
-                        <label>Media Type</label>
-                        {{form.media_type}}
-                      </div>
-        
-                      <div class="field">
-                        <label>Role</label>
-                        {{form.role}}
-                      </div>
-                      <div class="field">
-                        <label>Address</label>
-                        {{form.address}}
-                      </div>
-              
-                      <div class="field">
-                        <label>National ID</label>
-                        {{form.nid}}
-                      </div>
-                      <div class="field">
-                        <label>Company ID</label>
-                        {{form.office_id}}
-                      </div>
+              {{ message }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
 
-                      <div class="field">
-                        <label>Bio Data</label>
-                        {{form.bio}}
-                      </div>
-                      <div class="field"> {{form.agree_to_terms}}
-                        <label>Accept our <a href="#">Terms and Conditions</a></label>
-                      </div>
-                
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </form>
+          <div class="imgbox">
+            <div class="field">
+              <label>{{form.profile_photo.label}} </label>
+              <div id="profile_photos_preview" class="preview-container"></div>
+            </div>
+            <div class="field">
+              <input type="file" name="profile_photo" accept="image/*" id="id_profile_photo" />
+            </div>
           </div>
+        </div>
+        <div class="left">
+          <div class="grid2">
+            <div class="field">
+              <label>First Name</label>
+              {{form.fname}}
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              {{form.lname}}
+            </div>
+            <div class="field">
+              <label>National ID Number</label>
+              {{form.NIN}}
+            </div>
+            <div class="field">
+              <label>Nationality:</label>
+              {{form.nationality}}
+            </div>
+            <div class="field">
+              <label>Email:</label>
+              {{form.email}}
+            </div>
+            <div class="field">
+              <label>Contact</label>
+              {{form.phone}}
+            </div>
+            <div class="field">
+              <label>gender</label>
+              {{form.gender}}
+            </div>
+            <div class="field">
+              <label>Media House</label>
+              {{form.media_house}}
+            </div>
+            <div class="field">
+              <label>Media Type</label>
+              {{form.media_type}}
+            </div>
+            <div class="field">
+              <label>Role</label>
+              {{form.role}}
+            </div>
+            <div class="field">
+              <label>Address</label>
+              {{form.address}}
+            </div>
+            <div class="flex">
+              <div class="field">
+                <label>National ID</label>
+                {{form.nid}}
+              </div>
+              <div class="field">
+                <label>Company ID</label>
+                {{form.office_id}}
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bio Data</label>
+            {{form.bio}}
+          </div>
+
+          <!-- Add additional fields as necessary -->
+          <div class="fieldq">
+            {{ form.agree_to_terms }}
+            <label for="id_agree_to_terms"
+              >I agree to the <a href="#">Terms and Conditions</a></label
+            >
+          </div>
+          <button type="submit" class="btn-submit">Submit</button>
+        </div>
+      </div>
+    </form>
   </div>
- <!-- Add this to your template -->
-  <div class="copy-footer flex">
-    <h1>USSSA MEDIA<span>HUB</span> </h1>
-    <p> Copyright &#169 2024. All Rights Reserved</p>
+  <div class="copy-footer">
+    <p>&copy; 2025 USSSA MEDIA HUB. All Rights Reserved.</p>
   </div>
-  <!-- Add this to your template -->
 </div>
 
 {% endblock %}

@@ -1,155 +1,102 @@
+/* Container styling */
 .form-verification {
-  background-color: #e8e8e8;
+  background-color: #f5f5f5;
+  padding: 40px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.form-verification .main-page {
-  background-color: #fff;
-  margin: auto;
+
+/* Main form area */
+.main-page {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-@media (max-width: 1024px) {
-  .form-verification .main-page {
-    width: 100%;
-  }
+
+/* Form fields */
+.field {
+  margin-bottom: 20px;
 }
-.form-verification .main-page .schooler {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url(https://freedesignfile.com/upload/2017/02/White-abstract-background-with-wave-vector-illustration-03.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  flex-direction: column;
-  padding: 20px;
+
+.field label {
+  display: block;
+  font-weight: 500;
 }
-.form-verification .main-page .schooler .left {
-  -o-object-fit: cover;
-     object-fit: cover;
-  background-repeat: no-repeat;
-}
-.form-verification .main-page .schooler .top {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4em;
-  text-transform: capitalize;
-  font-weight: bold;
-  margin: 0 0 10px 0;
-}
-.form-verification .main-page .schooler .top img {
-  width: 100px;
-}
-.form-verification .main-page .schooler .top .hedtxt {
-  width: 200px;
-  font-size: 4rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-@media (max-width: 1028px) {
-  .form-verification .main-page .schooler {
-    width: 100%;
-  }
-}
-.form-verification .main-page .schooler .form-control {
-  padding: 20px;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.497);
-  -webkit-backdrop-filter: blur(2em);
-          backdrop-filter: blur(2em);
-}
-@media (max-width: 1098px) {
-  .form-verification .main-page .schooler .form-control {
-    width: 100%;
-  }
-}
-@media (max-width: 798px) {
-  .form-verification .main-page .schooler .form-control {
-    width: 100%;
-  }
-}
-.form-verification .main-page .schooler .form-control .schooled {
-  margin: 20px 0;
-}
-.form-verification .main-page .schooler .form-control .schooled h2 {
-  background-color: rgba(245, 245, 245, 0.1568627451);
-  padding: 10px;
-  border-bottom: solid 1px #ccc;
-}
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut {
+
+.field input,
+.field select,
+.field textarea {
   width: 100%;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
 }
-@media (max-width: 600px) {
-  .form-verification .main-page .schooler .form-control .schooled .fields .lefut {
-    flex-direction: column;
-  }
+
+/* Submit button */
+.btn-submit {
+  background-color: #810000;
+  color: #ffffff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox {
-  width: 35%;
+
+.btn-submit:hover {
+  background-color: #005bb5;
 }
-@media (max-width: 600px) {
-  .form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox {
-    width: 100%;
-  }
+
+/* Footer */
+.copy-footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #777;
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field {
-  width: 100%;
-  flex-direction: column;
+
+.imgbox .field,
+.imgbox .field-container {
+  margin-bottom: 10px;
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field .preview-container {
+.imgbox .field .preview-container,
+.imgbox .field-container .preview-container {
   background-image: url("https://static.vecteezy.com/system/resources/thumbnails/036/594/092/small_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg");
   background-position: center center;
   background-size: cover;
-  width: 300px !important;
-  height: 300px !important;
-}
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field label {
-  text-transform: capitalize;
-  font-weight: 500;
-  color: #464646;
-  font-size: 15px;
-}
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .imgbox .field input {
+  height: 300px;
   width: 100%;
-  padding: 8px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil {
-  padding: 10px;
-  width: 100%;
+@media (max-width: 900px) {
+  .imgbox .field .preview-container,
+  .imgbox .field-container .preview-container {
+    width: 300px;
+  }
 }
-@media (max-width: 600px) {
-  .form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil {
+@media (max-width: 550px) {
+  .imgbox .field .preview-container,
+  .imgbox .field-container .preview-container {
     width: 100%;
+    height: 250px;
   }
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field {
+.imgbox .field input,
+.imgbox .field select,
+.imgbox .field-container input,
+.imgbox .field-container select {
   width: 100%;
-  flex-direction: column;
+  box-shadow: 1px 1px 10px 1px rgba(48, 48, 48, 0.3294117647);
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field label {
-  text-transform: capitalize;
-  font-weight: 500;
-  color: #464646;
-  font-size: 15px;
-  margin-top: 10px;
+.imgbox .field label,
+.imgbox .field-container label {
+  margin: 0;
+  font-size: 13px;
+  color: #000000;
 }
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field input,
-.form-verification .main-page .schooler .form-control .schooled .fields .lefut .fiil .field select {
-  width: 100%;
-}
-.form-verification .copy-footer {
-  padding: 10px;
-}
+
 @media (max-width: 768px) {
-  .form-verification .copy-footer {
+  .flex {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
   }
-}
-.form-verification .copy-footer h1 {
-  font-family: Bebas Neue;
-  font-weight: bold;
-}
-.form-verification .copy-footer h1 span {
-  color: red;
-  font-family: Bebas Neue;
 }/*# sourceMappingURL=acc_form.css.map */
