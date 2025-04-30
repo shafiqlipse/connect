@@ -6,10 +6,11 @@
 <!---->
 {% block content %}
 <div class="form-verification">
-  <div class="main-page">
+  <div class="main-page grid2">
+    <div class="text"></div>
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      <div class="right flex">
+      <div class="right">
         <div class="right">
           {% if messages %}
           <ul class="messages">
@@ -29,12 +30,17 @@
               <div id="profile_photos_preview" class="preview-container"></div>
             </div>
             <div class="field">
-              <input type="file" name="profile_photo" accept="image/*" id="id_profile_photo" />
+              <input
+                type="file"
+                name="profile_photo"
+                accept="image/*"
+                id="id_profile_photo"
+              />
             </div>
           </div>
         </div>
         <div class="left">
-          <div class="grid2">
+          <div class="g">
             <div class="field">
               <label>First Name</label>
               {{form.fname}}
