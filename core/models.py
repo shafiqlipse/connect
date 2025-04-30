@@ -86,3 +86,6 @@ class Media(models.Model):
         verbose_name="Agree to Terms",
         help_text="Check this box if you agree to the terms and conditions.",
     )
+
+
+

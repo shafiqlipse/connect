@@ -18,113 +18,100 @@
           </div>
         </div>
       </div>
-      <div>
-        <!-- row -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <!-- card body -->
-              <div class="card-body p-5">
-                <div class="row">
-                  <div class="col-xl-6">
-                    <div class="product" id="product">
-                      <div>
-                        <div>
-                          <!-- img -->
-                          <img
-                            src="{{event.event_photo.url}}"
-                            alt=""
-                            class="img-fluid"
-                          />
-                        </div>
-                      </div>
 
-                    </div>
-                    <!-- product tools -->
+      <!-- Event Details Card -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body p-5">
+              <div class="row">
+                <!-- Event Image -->
+                <div class="col-xl-6">
+                  <div class="product" id="product">
+                    <img
+                      src="{{ event.event_photo.url }}"
+                      alt=""
+                      class="img-fluid"
+                    />
                   </div>
-                  <div class="col-xl-6 col-12">
-                    <div class="my-5 mx-xl-10">
+                </div>
+
+                <!-- Event Info -->
+                <div class="col-xl-6 col-12">
+                  <div class="my-5 mx-xl-10">
+                    <div>
+                      <h1>{{ event.title }}</h1>
                       <div>
-                        <!-- heading -->
-                        <h1>{{event.title}}</h1>
-                        <div>
-                          <!-- review -->
-                          <span>{{event.event_type}}</span>
-                        </div>
+                        <span>{{ event.event_type }}</span>
                       </div>
-                      <hr class="my-3" />
-                      <div class="mb-5">
-                        <!-- heading -->
-                        <h4 class="mb-1">
-                          STARTING FROM
-                          <span class="text-primary">{{event.start_date}}</span>
-                          <span class="text-muted text-decoration-line-through"
-                            >{{event.end_date}}</span
+                    </div>
+                    <hr class="my-3" />
+
+                    <div class="mb-5">
+                      <h4 class="mb-1">
+                        STARTING FROM
+                        <span class="text-primary">{{ event.start_date }}</span>
+                        <span class="text-muted text-decoration-line-through"
+                          >{{ event.end_date }}</span
+                        >
+                      </h4>
+                      <span>inclusive of Weekends</span>
+                    </div>
+
+                    {% if user.is_media %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="d-grid mb-2 mb-md-0">
+                          <a
+                            href="#!"
+                            class="btn btn-primary rounded-circle btn-icon texttooltip"
+                            data-template="newchat"
+                            data-bs-toggle="modal"
+                            data-bs-target="#newchatModal"
                           >
-                          <span class="text-warning"></span>
-                        </h4>
-                        <span>inclusive of Weekends</span>
-                      </div>
-
-                      <!-- row -->
-                      <div class="row">
-                        <!-- col -->
-                         {% if user.is_media %}
-                        <div class="col-md-6">
-                          <div class="d-grid mb-2 mb-md-0">
-                            <!-- btn -->
-                            <a href="#!" class="btn btn-danger"
-                              ><i class="fe fe-shopping-cart me-2"></i>Request Accreditation</a
-                            >
-                          </div>
-                        </div>
-                        <!-- col -->
-                        {% endif %}
-                      </div>
-                      <hr class="mt-4 mb-2" />
-                      <div class="mb-4" id="ecommerceAccordion">
-                        <!-- List group -->
-
-                        <ul class="list-group list-group-flush">
-                          <!-- List group item -->
-                          <li class="list-group-item px-0">
-                            <!-- Toggle -->
-                            <a
-                              class="d-flex align-items-center text-inherit text-decoration-none h4 mb-0"
-                              data-bs-toggle="collapse"
-                              href="#productDetails"
-                              role="button"
-                              aria-expanded="false"
-                              aria-controls="productDetails"
-                            >
-                              <div class="me-auto">Description</div>
-                              <!-- Chevron -->
-                              <span class="chevron-arrow ms-4">
-                                <i
-                                  data-feather="chevron-down"
-                                  class="icon-xs"
-                                ></i>
-                              </span>
-                            </a>
-                            <!-- Row -->
-                            <!-- Collapse -->
-                            <div
-                              class="collapse show"
-                              id="productDetails"
-                              data-bs-parent="#ecommerceAccordion"
-                            >
-                              <div class="py-3">
-                                <p>
-                       {{event.description}}
-                                </p>
-
-           
-                              </div>
+                            <i data-feather="edit" class="icon-xs"></i>
+                            <div id="newchat" class="d-none">
+                              <span>Request Accreditation</span>
                             </div>
-                          </li>
-
+                          </a>
+                        </div>
                       </div>
-                
+                    </div>
+                    {% endif %}
+
+                    <hr class="mt-4 mb-2" />
+
+                    <!-- Description Section -->
+                    <div class="mb-4" id="ecommerceAccordion">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item px-0">
+                          <a
+                            class="d-flex align-items-center text-inherit text-decoration-none h4 mb-0"
+                            data-bs-toggle="collapse"
+                            href="#productDetails"
+                            role="button"
+                            aria-expanded="false"
+                            aria-controls="productDetails"
+                          >
+                            <div class="me-auto">Description</div>
+                            <span class="chevron-arrow ms-4">
+                              <i
+                                data-feather="chevron-down"
+                                class="icon-xs"
+                              ></i>
+                            </span>
+                          </a>
+                          <div
+                            class="collapse show"
+                            id="productDetails"
+                            data-bs-parent="#ecommerceAccordion"
+                          >
+                            <div class="py-3">
+                              <p>{{ event.description }}</p>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -133,7 +120,120 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal for Accreditation -->
+      <div
+        class="modal fade"
+        id="newchatModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="newchatModalLabel"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header align-items-center">
+              <h4 class="mb-0" id="newchatModalLabel">Request Accreditation</h4>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body px-4">
+              <form
+                action="{% url 'request_accreditation' event.id %}"
+                method="POST"
+              >
+                {% csrf_token %}
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name="reason"
+                    required
+                    placeholder="Why do you need accreditation?"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accreditation Requests Table -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive table-card">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th>Journalist</th>
+                      <th>Reason</th>
+                      <th>Status</th>
+                      <th>Submitted At</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for request in accreditation_requests %}
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div
+                            class="d-flex flex-column justify-content-center"
+                          >
+                            <h6 class="mb-0 text-sm">
+                              {{ request.journalist.journalist.fname }}
+                              {{request.journalist.lname }}
+                            </h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{{ request.reason }}</td>
+                      <td>
+                        <span class="badge bg-gradient-success"
+                          >{{ request.status }}</span
+                        >
+                      </td>
+                      <td>{{ request.submitted_at }}</td>
+                      <td>
+                        <a
+                          href="{% url 'accept_accreditation' request.id %}"
+                          class="text-success font-weight-bold text-xs"
+                        >
+                          Accept
+                        </a>
+                        <a
+                          href="{% url 'reject_accreditation' request.id %}"
+                          class="text-danger font-weight-bold text-xs"
+                        >
+                          Reject
+                        </a>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="5">No accreditation requests yet.</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 {% endblock %}

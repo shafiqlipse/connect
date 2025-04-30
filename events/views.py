@@ -79,11 +79,12 @@ def journs(request):
 @login_required(login_url="login")
 def EventDetail(request, id):
     event = get_object_or_404(Event, id=id)
+    accreditation_requests = AccreditationRequest.objects.filter(event=event).select_related('journalist')
     relatedevents = Event.objects.filter(event_type=event.event_type).exclude(id=id)
-    recent = Event.objects.all().order_by("-created_at")[:10]
+    # recent = Event.objects.all().order_by("-created_at")[:10]
     # new_comment_reply = None
 
-    context = {"event": event, "recent": recent, "relatedevents": relatedevents}
+    context = {"event": event, "accreditation_requests": accreditation_requests, "relatedevents": relatedevents}
 
     return render(request, "event/event.html", context)
 
@@ -172,3 +173,48 @@ def deleteevent(request, id):
         return redirect("Events")
 
     return render(request, "events/deleteEvent.html", {"obj": stud})
+
+
+def request_accreditation(request, id):
+    if request.method == "POST":
+        event = get_object_or_404(Event, id=id)
+        reason = request.POST.get("reason", "").strip()
+
+        if not reason:
+            messages.error(request, "Please provide a reason for the accreditation request.")
+            return redirect("event_detail", id=event.id)
+
+        existing_request = AccreditationRequest.objects.filter(
+            journalist=request.user,
+            event=event
+        ).first()
+
+        if existing_request:
+            messages.info(request, "You have already requested accreditation for this event.")
+        else:
+            AccreditationRequest.objects.create(
+                journalist=request.user,
+                event=event,
+                reason=reason
+            )
+            messages.success(request, "Accreditation request submitted.")
+
+        return redirect("event", id=event.id)
+    
+    
+    
+@login_required
+def accept_accreditation(request, id):
+    accreditation = get_object_or_404(AccreditationRequest, id=id)
+    accreditation.status = 'approved'
+    accreditation.save()
+    messages.success(request, 'Accreditation request approved.')
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
+
+@login_required
+def reject_accreditation(request, id):
+    accreditation = get_object_or_404(AccreditationRequest, id=id)
+    accreditation.status = 'rejected'
+    accreditation.save()
+    messages.success(request, 'Accreditation request rejected.')
+    return redirect(request.META.get('HTTP_REFERER', 'home'))

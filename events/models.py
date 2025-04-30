@@ -51,3 +51,22 @@ class AccreditationRequest(models.Model):
         default='pending'
     )
     submitted_at = models.DateTimeField(auto_now_add=True)
+
+
+
+# models.py
+class Submission(models.Model):
+    journalist = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    url = models.URLField(blank=True, null=True)  # <-- New
+    type = models.CharField(max_length=50, choices=[
+        ('photo', 'Photo'), 
+        ('video', 'Video'), 
+        ('article', 'Article'), 
+        ('report', 'Report'),
+        ('link', 'External Link')  # Optional
+    ])
+    description = models.TextField(blank=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
