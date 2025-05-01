@@ -32,7 +32,7 @@ from xhtml2pdf import pisa
 from io import BytesIO
 
 
-@staff_required
+@login_required
 def journs(request):
     # Get all journs
     journs = Media.objects.all()

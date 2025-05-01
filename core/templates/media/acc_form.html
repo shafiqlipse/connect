@@ -7,7 +7,29 @@
 {% block content %}
 <div class="form-verification">
   <div class="main-page grid2">
-    <div class="text"></div>
+    <div class="text">
+      <h1><span>USSSA</span> media hub</h1>
+      <p>
+        Welcome! The USSSA Media Hub is a restricted access web based service of
+        usssaonline.com with specific content tailored to support journalists,
+        photographers and other media professionals.
+      </p>
+      <p>
+        Media are strongly encouraged to register for access to the USSSA Media
+        Hub. As a registered user, you will have access to extensive media
+        information not available on usssaonline.com. Only registered users of
+        the Media Hub will be able to apply for accreditation to USSSA events
+        and competitions.
+      </p>
+
+      <p>
+        We invite you to take a moment to complete and submit the following
+        registration form. Only fully completed registrations will be accepted.
+        In case of questions or problems, please contact media@usssaonline.com.
+      </p>
+
+      <p>Best regards, Media Hub Administrator</p>
+    </div>
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="right">
@@ -105,7 +127,10 @@
           <div class="fieldq">
             {{ form.agree_to_terms }}
             <label for="id_agree_to_terms"
-              >I agree to the <a href="#">Terms and Conditions</a></label
+              >I agree to the
+              <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-link">
+                Terms and Conditions</span
+              ></button
             >
           </div>
           <button type="submit" class="btn-submit">Submit</button>
@@ -116,7 +141,39 @@
   <div class="copy-footer">
     <p>&copy; 2025 USSSA MEDIA HUB. All Rights Reserved.</p>
   </div>
-</div>
 
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div></div>
 {% endblock %}
 <!---->

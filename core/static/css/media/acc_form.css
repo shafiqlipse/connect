@@ -12,11 +12,44 @@
 /* Main form area */
 .main-page {
   background-color: #ffffff;
-  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   height: 500px;
   overflow: auto;
+  position: relative;
+}
+.main-page .text {
+  background-color: rgb(255, 255, 255);
+  height: inherit;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+@media (max-width: 900px) {
+  .main-page .text {
+    position: static;
+  }
+}
+.main-page .text p {
+  font-size: 13px;
+  text-align: center;
+  color: #3e3e3e;
+}
+.main-page .text h1 {
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.main-page .text h1 span {
+  color: red;
+  font-weight: bold;
+}
+.main-page form {
+  padding: 30px;
 }
 
 /* Form fields */
@@ -69,8 +102,7 @@
   background-position: center center;
   background-size: cover;
   height: 300px !important;
-  width: 300px !important;
-  width: 100%;
+  width: 100% !important;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -92,7 +124,7 @@
 .imgbox .field-container input,
 .imgbox .field-container select {
   width: 100%;
-  box-shadow: 1px 1px 10px 1px rgba(48, 48, 48, 0.3294117647);
+  box-shadow: 1px 1px 10px 1px rgba(48, 48, 48, 0.1607843137);
 }
 .imgbox .field label,
 .imgbox .field-container label {
