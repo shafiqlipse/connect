@@ -57,7 +57,6 @@ class AccreditationRequest(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
 
 
-
 # models.py
 class Submission(models.Model):
     journalist = models.ForeignKey(User, on_delete=models.CASCADE)
