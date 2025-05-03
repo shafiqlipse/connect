@@ -61,4 +61,4 @@ def activate_journalist(request, id):
     journalist.status = "Active"
     journalist.save()
     messages.success(request, "Journalist activated successfully.")
-    return redirect("journs")
+    return redirect("active_journalists")
