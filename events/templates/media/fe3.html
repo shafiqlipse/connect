@@ -1,0 +1,46 @@
+<table>
+    <tbody>
+        {% for event_data in event_accreditations %} {% for item in event_data.journalists %}
+      <!---->
+      {% if forloop.counter0|divisibleby:2 %}
+      <!-- Start a new row for every even-numbered request -->
+      <tr>
+        {% endif %}
+        <td>
+          <table>
+            <tr>
+              <td class="td">
+                <span class="deas"
+                  ><strong
+                    >{{ item.request.journalist.fname|upper }} {{ item.request.journalist.lname|upper }}
+                  </strong>
+                </span>
+                <br />
+
+                <span class="des">{{ item.media.role|upper }} | </span><br />
+                <span class="pos"
+                  ><strong>{{ item.media.media_house|upper }}</strong></span
+                >
+              </td>
+              <td class="atd">
+                {% if item.media.profile_photo %}
+                <img
+                  src="{{ item.media.profile_photo.path }}"
+                  alt="{{ item.request.journalist.fname }}"
+                />
+                {% else %}
+                <img
+                  src="{% static 'images/profile.png' %}"
+                  alt="{{ request.journalistlast_name }}"
+                />
+                {% endif %}
+              </td>
+            </tr>
+          </table>
+        </td>
+        {% if forloop.last or forloop.counter0|add:1|divisibleby:2 %}
+        <!-- End the row for the last or odd-numbered request -->
+      </tr>
+      {% endif %} {% endfor %} {% endfor %}
+    </tbody>
+  </table>

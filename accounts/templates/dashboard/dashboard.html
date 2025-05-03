@@ -16,7 +16,7 @@
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="{% static 'images/favicon/favicon.png' %}"
+      href="{% static 'images/logo.png' %}"
     />
 
     <!-- Color modes -->
@@ -60,8 +60,12 @@
         <!-- navbar -->
         <div class="navbar-custom navbar navbar-expand-lg">
           <div class="container-fluid px-0">
-            <a class="navbar-brand d-block d-md-none" href="../index.html">
-              <img src="../assets/images/brand/logo/logo-2.svg" alt="Image" />
+            <a class="navbar-brand d-block d-md-none" href="/">
+              <img
+                src="{% static 'images/lono.png'%}"
+                alt="Image"
+                width="70px"
+              />
             </a>
 
             <a id="nav-toggle" href="#!" class="ms-auto ms-md-0 me-0 me-lg-3">
@@ -267,7 +271,7 @@
                   <div class="avatar avatar-md avatar-indicators avatar-online">
                     <img
                       alt="avatar"
-                      src="../assets/images/avatar/avatar-11.jpg"
+                      src="{% static 'images/profile.png'%}"
                       class="rounded-circle"
                     />
                   </div>
@@ -278,7 +282,7 @@
                 >
                   <div class="px-4 pb-0 pt-2">
                     <div class="lh-1">
-                      <h5 class="mb-1">John E. Grainger</h5>
+                      <h5 class="mb-1">{{user}}</h5>
                       <a href="#!" class="text-inherit fs-6">View my profile</a>
                     </div>
                     <div class="dropdown-divider mt-3 mb-2"></div>
@@ -297,15 +301,6 @@
                         Edit Profile
                       </a>
                     </li>
-                    <li>
-                      <a class="dropdown-item" href="#!">
-                        <i
-                          class="me-2 icon-xxs dropdown-item-icon"
-                          data-feather="activity"
-                        ></i>
-                        Activity Log
-                      </a>
-                    </li>
 
                     <li>
                       <a
@@ -320,7 +315,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="../index.html">
+                      <a class="dropdown-item" href="{% url 'logout'%}">
                         <i
                           class="me-2 icon-xxs dropdown-item-icon"
                           data-feather="power"
@@ -343,7 +338,7 @@
         <div class="h-100" data-simplebar>
           <!-- Brand logo -->
           <a class="navbar-brand" href="">
-            <img src="{% static 'images/favicon/logo.png' %}" alt="USSSA" />
+            <img src="{% static 'images/logo.png' %}" alt="USSSA" />
           </a>
           <!-- Navbar nav -->
           <ul class="navbar-nav flex-column" id="sideNavbar">
@@ -359,226 +354,55 @@
             <li class="nav-item">
               <div class="navbar-heading">Apps</div>
             </li>
+            {% if user.is_media %}
             <!-- Nav item -->
             <li class="nav-item">
-              <a class="nav-link has-arrow" href="">Calendar</a>
+              <a class="nav-link has-arrow" href="{% url 'mysubmissions'%}">Submissions</a>
+            </li>{% endif %}
+            <!-- Nav item -->
+             {% if user.is_staff %}
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link has-arrow" href="{% url 'newevent'%}">Submissions</a>
             </li>
             <!-- Nav item -->
-
+            
+            <!-- Nav item -->
+  
+            
             <!-- Nav item -->
             <li class="nav-item">
-              <a
-                class="nav-link has-arrow collapsed"
-                href="#!"
-                data-bs-toggle="collapse"
-                data-bs-target="#navinvoice"
-                aria-expanded="false"
-                aria-controls="navinvoice"
-              >
-                <i data-feather="clipboard" class="nav-icon me-2 icon-xxs"></i>
-                Journalists
-              </a>
-
-              <div
-                id="navinvoice"
-                class="collapse"
-                data-bs-parent="#sideNavbar"
-              >
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link has-arrow" href="{% url 'journs'%}"
-                      >Journalists</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link has-arrow"
-                      href="../pages/invoice-detail.html"
-                      >Accounts</a
-                    >
-                  </li>
-                </ul>
-              </div>
+              <div class="navbar-heading">Journalists</div>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link collapsed"
-                href="#!"
-                data-bs-toggle="collapse"
-                data-bs-target="#navprofilePages"
-                aria-expanded="false"
-                aria-controls="navprofilePages"
-              >
-                <i data-feather="user" class="nav-icon me-2 icon-xxs"></i>
-                Profile
-              </a>
-              <div
-                id="navprofilePages"
-                class="collapse"
-                data-bs-parent="#sideNavbar"
-              >
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-overview.html"
-                      >Overview</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-project.html"
-                      >Project</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-files.html"
-                      >Files</a
-                    >
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-team.html"
-                      >Team</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-followers.html"
-                      >Followers</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-activity.html"
-                      >Activity</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/profile-settings.html"
-                      >Settings</a
-                    >
-                  </li>
-                </ul>
-              </div>
+              <a class="nav-link has-arrow" href="{% url 'evens'%}">All Journalists</a>
             </li>
-            <!-- Nav item -->
             <li class="nav-item">
-              <a
-                class="nav-link has-arrow collapsed"
-                href="!#"
-                data-bs-toggle="collapse"
-                data-bs-target="#navblog"
-                aria-expanded="false"
-                aria-controls="navblog"
-              >
-                <i data-feather="edit" class="nav-icon me-2 icon-xxs"></i>
-                Events
-              </a>
-
-              <div id="navblog" class="collapse" data-bs-parent="#sideNavbar">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link has-arrow"
-                      href="{% url 'championships'%}"
-                      >Championships</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link has-arrow"
-                      href="../pages/blog-author-detail.html"
-                      >Engagements</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link has-arrow"
-                      href="../pages/create-blog-post.html"
-                      >Launches</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link has-arrow"
-                      href="../pages/create-blog-post.html"
-                      >Meetings</a
-                    >
-                  </li>
-                </ul>
-              </div>
+              <a class="nav-link has-arrow" href="{% url 'active_journalists'%}">Active Journalists</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link has-arrow" href="{% url 'evens'%}">Accreditation</a>
             </li>
 
             <!-- Nav item -->
             <li class="nav-item">
-              <div class="navbar-heading">Champio</div>
+              <div class="navbar-heading">Events</div>
             </li>
-
             <li class="nav-item">
-              <a
-                class="nav-link has-arrow collapsed"
-                href="#!"
-                data-bs-toggle="collapse"
-                data-bs-target="#navDocs"
-                aria-expanded="false"
-                aria-controls="navDocs"
-              >
-                <i data-feather="package" class="nav-icon me-2 icon-xxs"></i>
-                Docs
-              </a>
-              <div id="navDocs" class="collapse" data-bs-parent="#sideNavbar">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="../docs/index.html" class="nav-link"
-                      >Introduction</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="../docs/environment-setup.html" class="nav-link"
-                      >Environment setup</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="../docs/working-with-gulp.html" class="nav-link"
-                      >Working with Gulp</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="../docs/compiled-files.html" class="nav-link"
-                      >Compiled Files</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="../docs/file-structure.html" class="nav-link"
-                      >File Structure</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="../docs/resources-assets.html" class="nav-link"
-                      >Resources & assets</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="../docs/changelog.html" class="nav-link"
-                      >Changelog</a
-                    >
-                  </li>
-                </ul>
-              </div>
+              <a class="nav-link has-arrow" href="{% url 'evens'%}">All Events</a>
             </li>
-          </ul>
-          <div class="card bg-light shadow-none text-center mx-4 my-8">
-            <div class="card-body py-6">
-              <img
-                src="../assets/images/background/giftbox.png"
-                alt="dash ui - admin dashboard template"
-              />
-              <div class="mt-4">
-                <h5>Unlimited Access</h5>
-                <p class="fs-6 mb-4">
-                  Upgrade your plan from a Free trial, to select Business Plan.
-                  Start Now
-                </p>
-                <a href="#" class="btn btn-secondary btn-sm">Upgrade Now</a>
-              </div>
-            </div>
-          </div>
+            <li class="nav-item">
+              <a class="nav-link has-arrow" href="{% url 'active_events'%}">Active Events</a>
+            </li>
+       
+           
+            <li class="nav-item">
+              <a class="nav-link has-arrow" href="{% url 'newevent'%}">New Event</a>
+            </li>
+        {% endif %}
+            <li class="nav-item">
+              <a class="nav-link has-arrow" href="{% url 'championships'%}">Active Events</a>
+            </li>
         </div>
       </div>
 

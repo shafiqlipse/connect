@@ -88,3 +88,11 @@ def update_journalist(request, id):
     return render(
         request, "media/acc_form.html", {"form": form, "jounalist": jounalist}
     )
+
+
+
+def media_profile(request):
+    user=request.user
+    journ = Media.objects.get(user=user)
+    context={"journ":journ}
+    return render(request, "media/journ.html",context)

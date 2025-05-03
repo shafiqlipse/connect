@@ -27,3 +27,18 @@ class EventForm(forms.ModelForm):
             'event_photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'event_cover': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
+        
+        
+class SubmissionForm(forms.ModelForm):
+    class Meta:
+        model = Submission
+        fields = ['title', 'url', 'event', 'type', 'description']
+        
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-select'}),
+            'event': forms.Select(attrs={'class': 'form-select'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'https://example.com'}),
+            
+        }

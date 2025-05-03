@@ -1,6 +1,10 @@
 from django.db import models
 from accounts.models import User
-
+status_choices = [
+    ("pending", "Pending"),
+    ("Active", "Active"),
+    ("Inactive", "Inactive"),
+]
 
 etypes = (
     ("Press Conference", "Press Conference"),
@@ -37,7 +41,7 @@ class Event(models.Model):
         default="http://localhost:8000/static/images/profile.png",
     )
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
+    status = models.CharField(max_length=10, choices=status_choices, default="Active")
     def __str__(self):
         return self.title
 

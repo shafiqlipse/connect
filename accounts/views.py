@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistrationForm
 from core.models import *
+# from events.models import *
 from .models import User, UserProfile
 from django.contrib import messages
 
@@ -22,28 +23,19 @@ def user_login(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            # Get the user without logging in
             user = form.get_user()
             login(request, user)
 
-            # Check if the user is a school
             if user.is_media:
-                # Check if the school user has a profile
-                profile = UserProfile.objects.filter(user=user).first()
-                if profile:
-                    messages.info(request, "Welcome back!")
-                    return redirect(
-                        "mediaprofile"
-                    )  # Redirect to home for school users with a profile
-                else:
-                    messages.info(request, "Welcome! Please complete your  profile.")
-                    return redirect(
-                        "dashboard"
-                    )  # Adjust the URL name for your create school profile view
-            # else:
-            # If the user is not a school, log in and redirect to dashboard
-            messages.success(request, "Login successful.")
-            return redirect("dashboard")  # Adjust the URL name for your dashboard view
+                messages.success(request, "School login successful.")
+                return redirect("media_profile")
+
+
+            else:
+                messages.success(request, "Login successful.")
+                return redirect(
+                    "dashboard"
+                )  # Adjust the URL name for your dashboard view
         else:
             messages.error(request, "Error in login. Please check your credentials.")
     else:

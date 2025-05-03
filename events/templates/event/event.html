@@ -60,22 +60,34 @@
 
                     {% if user.is_media %}
                     <div class="row">
+                      {% if event.id in requested_event_ids %}
+                      <form
+                        action="{% url 'cancel_accreditation_request' event.id %}"
+                        method="post"
+                      >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">
+                          Cancel Request
+                        </button>
+                      </form>
+
+                      {% else %}
                       <div class="col-md-6">
                         <div class="d-grid mb-2 mb-md-0">
                           <a
                             href="#!"
-                            class="btn btn-primary rounded-circle btn-icon texttooltip"
+                            class="btn btn-primary"
                             data-template="newchat"
                             data-bs-toggle="modal"
                             data-bs-target="#newchatModal"
                           >
                             <i data-feather="edit" class="icon-xs"></i>
-                            <div id="newchat" class="d-none">
-                              <span>Request Accreditation</span>
-                            </div>
+                            <span>Request Accreditation</span>
+                            <div id="newchat" class="d-none"></div>
                           </a>
                         </div>
                       </div>
+                      {% endif %}
                     </div>
                     {% endif %}
 
@@ -168,6 +180,7 @@
       </div>
 
       <!-- Accreditation Requests Table -->
+      {% if user.is_staff %}
       <div class="row mt-5">
         <div class="col-12">
           <div class="card">
@@ -232,6 +245,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

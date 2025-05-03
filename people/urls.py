@@ -18,7 +18,7 @@ urlpatterns = [
     path("verify/", verify, name="verify"),
     path("events/", include("events.urls")),
     path("accreditation_form/", accreditaionform, name="accform"),
-    path("media/journalists/", journs, name="journs"),
+    # path("media/journalists/", journs, name="journs"),
     path("media/journalist/<int:id>", update_journalist, name="journalist"),
     # path("media/journalist/<int:id>", update_journalist, name="journalist"),
     
