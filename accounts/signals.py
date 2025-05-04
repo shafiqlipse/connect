@@ -15,7 +15,7 @@ def create_journalist(sender, instance, created, **kwargs):
             try:
                 # Generate credentials
                 username = instance.email
-                password = f"U{instance.phone[3:7]}@2025"
+                password = "Media.USSSA@2025"
 
                 # Create the user
                 user = User.objects.create_user(
