@@ -31,7 +31,7 @@
                     <img
                       src="{{ event.event_photo.url }}"
                       alt=""
-                      class="img-fluid"
+                      class="img-fluid p-2"
                     />
                   </div>
                 </div>
@@ -49,16 +49,44 @@
 
                     <div class="mb-5">
                       <h4 class="mb-1">
-                        STARTING FROM
-                        <span class="text-primary">{{ event.start_date }}</span>
-                        <span class="text-muted text-decoration-line-through"
-                          >{{ event.end_date }}</span
-                        >
+                        FROM
+                        <span class="text-primary">{{ event.start_date }}</span> TO
+                        <span class="text-primary">{{ event.end_date }}</span>
+                        
                       </h4>
                       <span>inclusive of Weekends</span>
                     </div>
 
                     {% if user.is_media %}
+                    <!-- Accreditation Request Button -->
+                    {% if accreditation_request %}
+                     {% if accreditation_request.status == 'pending' %}
+                    <div class="alert alert-warning">
+                      <strong>Accreditation Pending</strong><br />
+                      Your request is under review.
+                    </div>
+
+                    {% elif accreditation_request.status == 'approved' %}
+                    <div class="alert alert-success">
+                      <strong>Accreditation Approved</strong><br />
+                      You have been approved to cover this event.
+                    </div>
+
+                    {% elif accreditation_request.status == 'rejected' %}
+                    <div class="alert alert-danger">
+                      <strong>Accreditation Rejected</strong><br />
+                      Your request was not approved.
+                    </div>
+                    {% endif %} {% else %} 
+                    {% if user.is_authenticated and user.role == 'journalist' %}
+                   
+                    <div class="alert alert-info">
+                      You have not submitted an accreditation request for this
+                      event.
+                    </div>
+                    {% endif %} {% endif %}
+
+                    <!-- Accreditation Request Button -->
                     <div class="row">
                       {% if event.id in requested_event_ids %}
                       <form
@@ -129,6 +157,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -205,8 +234,8 @@
                             class="d-flex flex-column justify-content-center"
                           >
                             <h6 class="mb-0 text-sm">
-                              {{ request.journalist.journalist.fname }}
-                              {{request.journalist.lname }}
+                              {{ request.journalist.first_name }} {{
+                              request.journalist.last_name }}
                             </h6>
                           </div>
                         </div>

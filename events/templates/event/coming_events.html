@@ -1,0 +1,63 @@
+{% extends "dashboard/dashboard.html" %}
+<!-- IGNORE-->
+{% load static %}
+<!-- IGNORE-->
+{% block title %}Events{% endblock %}
+<!-- IGNORE-->
+{% block content %}
+
+<div class="container-fluid">
+  <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+      <h4 class="fs-18 fw-semibold m-0">Events</h4>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Events</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Media Object -->
+  <div class="row">
+    <!-- Media Object Default -->
+    {% for event in events %}
+    <div class="col-xl-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">{{event.title}}</h5>
+        </div>
+        <!-- end card header -->
+
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img
+                src="{{event.event_photo.url}}"
+                class="avatar-lg rounded"
+                alt="flex shrink"
+              />
+            </div>
+            <div class="flex-grow-1 ms-3">
+              {{event.description |truncatewords:10}}
+
+              <a href="{% url 'event' event.id %}" class="btn btn-primary mt-2"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- end card-body -->
+      </div>
+      <!-- end card-->
+    </div>
+    {% endfor %}
+    <!-- end col -->
+  </div>
+</div>
+
+{% endblock %}

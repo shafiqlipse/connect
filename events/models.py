@@ -55,7 +55,14 @@ class AccreditationRequest(models.Model):
         default='pending'
     )
     submitted_at = models.DateTimeField(auto_now_add=True)
-
+    
+    
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self._old_status = AccreditationRequest.objects.get(pk=self.pk).status
+        else:
+            self._old_status = None
+        super().save(*args, **kwargs)
 
 # models.py
 class Submission(models.Model):

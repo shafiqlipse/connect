@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 # from accounts.decorators import school_required, anonymous_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
-from .filters import *
 from .forms import *
 from accounts.forms import *
 
@@ -11,8 +10,6 @@ from accounts.forms import *
 from django.http import JsonResponse
 import datetime
 from django.contrib import messages
-from core.models import Media
-from django.shortcuts import render, redirect, get_object_or_404
 from xhtml2pdf import pisa
 from django.template.loader import get_template
 from django.http import HttpResponse
@@ -35,7 +32,7 @@ from io import BytesIO
 from .models import Event, AccreditationRequest
 
 @login_required
-def evens(request):
+def events(request):
     events = Event.objects.filter(status="Active")
 
     # Collect accreditation requests grouped by event
@@ -92,7 +89,7 @@ def evens(request):
         return response
 
     # Render page for GET requests
-    return render(request, "media/journs.html", {
+    return render(request, "event/eventlist.html", {
         "events": events,
         "event_accreditations": event_accreditations
     })
@@ -110,41 +107,18 @@ def EventDetail(request, id):
     ).values_list('event_id', flat=True)
     requested_event_ids = set(user_requests)
     # new_comment_reply = None
-
-    context = {"event": event, "accreditation_requests": accreditation_requests, "relatedevents": relatedevents, "requested_event_ids": requested_event_ids,}
+    accreditation_request = None
+    if request.user.is_authenticated and request.user.is_media:
+        accreditation_request = AccreditationRequest.objects.filter(
+            journalist=request.user,
+            event=event
+        ).first()
+    context = {"event": event, "accreditation_request": accreditation_request, "accreditation_requests": accreditation_requests, "relatedevents": relatedevents, "requested_event_ids": requested_event_ids,}
 
     return render(request, "event/event.html", context)
 
 
-# # Events details......................................................
-# event admin or user list
-@login_required(login_url="login")
-def eventlist(request):
-    events = Event.objects.all()
 
-    context = {"events": events}
-
-    return render(request, "event/eventlist.html", context)
-
-@login_required(login_url="login")  
-def eventlist(request):
-    events = Event.objects.all()
-    context = {"events": events}
-    return render(request, "event/eventlist.html", context)
-
-@login_required(login_url="login")
-def champlist(request):
-    championships = Event.objects.filter(event_type="Championships")
-    context = {"championships": championships}
-    return render(request, "event/event_grid.html", context)
-
-@login_required(login_url="login")
-def active_journalists(request):
-    journalists = Media.objects.all()
-
-    context = {"journalists": journalists}
-
-    return render(request, "media/jornalists.html", context)
 
 @login_required(login_url="login")
 def active_events(request):
@@ -190,12 +164,7 @@ def eventupdate(request, id):
     return render(request, "event/newevent.html", context)
 
 
-@staff_required
-def journ_detail(request, id):
-    journ = get_object_or_404(Media, id=id)
 
-    context = {"journ": journ}
-    return render(request, "media/journ.html", context)
 
 
 # def (request,id):------------------------------------------------------------------
@@ -207,7 +176,7 @@ def deleteevent(request, id):
         stud.delete()
         return redirect("Events")
 
-    return render(request, "events/deleteEvent.html", {"obj": stud})
+    return render(request, "event/deleteevent.html", {"obj": stud})
 
 
 def request_accreditation(request, id):
@@ -305,6 +274,11 @@ def mysubmissions(request):
     return render(request, 'submissions/submissions_list.html', {'submissions': submissions})
 
 @login_required
+def allsubmissions(request):
+    submissions = Submission.objects.all().order_by('-submitted_at')
+    return render(request, 'submissions/submissions_list.html', {'submissions': submissions})
+
+@login_required
 def approve_submission(request, pk):
     submission = get_object_or_404(Submission, pk=pk)
     submission.approved = True
@@ -319,3 +293,18 @@ def reject_submission(request, pk):
     submission.save()
     messages.success(request, 'Submission rejected.')
     return redirect(request.META.get('HTTP_REFERER', 'submission_list'))
+
+# views.py
+# ... other imports ...
+# from .models import Event, AccreditationRequest
+
+def coming_events(request):
+    events = Event.objects.filter(status="Active").order_by('start_date')
+    return render(request, "event/coming_events.html", {"events": events})
+
+
+
+def completed_events(request):
+    events = Event.objects.filter(status="Completed").order_by('-start_date')
+    return render(request, "event/completed_events.html", {"events": events})
+

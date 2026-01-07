@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Register | Dusty - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A fully featured admin theme which can be used to build CRM, CMS, etc."
+    />
+    <meta name="author" content="Zoyothemes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+    {% include "assets/css.html" %}
+  </head>
+  <style>
+    .preview-container img {
+      max-width: 150px;
+      max-height: 450px;
+      object-fit: cover;
+      border: 2px solid #ddd;
+      padding: 5px;
+    }
+  </style>
+  <body>
+    <!-- Begin page -->
+    <div class="account-page">
+      <div class="container-fluid p-0">
+        <div
+          class="row align-items-center justify-content-center g-0 px-3 py-3 vh-100"
+        >
+          <div class="col-xl-9 col-lg-10 col-md-12">
+            <div class="row">
+              <div class="col-md-9 mx-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="mb-0 p-0 p-lg-3">
+                      <div class="mb-0 border-0 p-md-4 p-lg-0">
+                        <div class="mb-3 p-0 text-center">
+                          <div class="auth-brand">
+                            <a class="logo logo-light" href="/dusty/html/">
+                              <span class="logo-lg">
+                                <img
+                                  src="{% static 'img/logos.png' %}"
+                                  alt=""
+                                  height="24"
+                                />
+                              </span>
+                            </a>
+                            <a class="logo logo-dark" href="/dusty/html/">
+                              <span class="logo-lg">
+                                <img
+                                  src="{% static 'img/logos.png' %}"
+                                  alt=""
+                                  height="24"
+                                />
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="auth-title-section mb-4 text-center">
+                          <h3 class="text-primary fw-semibold mb-1">
+                            Welcome to <br />USSSA WORKERS SACCO
+                          </h3>
+                          <h3 class="text-primary fw-semibold mb-1">
+                            Create New Account
+                          </h3>
+                          <p class="text-muted fs-14 mb-0">
+                            Sign up to unlock exclusive content, special offers,
+                            and be the first to know about exciting updates.
+                          </p>
+                        </div>
+                        <div class="alert">
+                          {% if messages %} {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                          </div>
+                          {% endfor %} {% endif %}
+                        </div>
+
+                        <div class="pt-0">
+                          <form
+                            action=""
+                            class="my-4"
+                            method="POST"
+                            enctype="multipart/form-data"
+                          >
+                            {% csrf_token %}
+                            <hr />
+                            <h2>Personal Information</h2>
+                            <hr />
+                            <div class="row mb-3">
+                              <div class="field">
+                                <label for="photo" class="form-label"
+                                  >Profile Photo</label
+                                >
+                                <div
+                                  id="photos_preview"
+                                  class="preview-container"
+                                ></div>
+                              </div>
+                              <div class="field">{{form.photo}}</div>
+                            </div>
+
+                            <div class="row">
+                              <div class="form-group mb-3 col-md-6 col-sm-12">
+                                <label for="first_name" class="form-label"
+                                  >First Name</label
+                                >
+                                {{form.first_name}}
+                              </div>
+                              <div class="form-group mb-3 col-md-6 col-sm-12">
+                                <label for="last_name" class="form-label"
+                                  >Last Name</label
+                                >
+                                {{form.last_name}}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="gender" class="form-label"
+                                  >Gender</label
+                                >
+                                {{form.gender}}
+                              </div>
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="date_of_birth" class="form-label"
+                                  >Date of Birth</label
+                                >
+                                {{form.date_of_birth}}
+                              </div>
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="national_id" class="form-label"
+                                  >National ID Number</label
+                                >
+                                {{form.national_id}}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group mb-3 col-md-6 col-sm-12">
+                                <label for="email" class="form-label"
+                                  >Email</label
+                                >
+                                {{form.email}}
+                              </div>
+                              <div class="form-group mb-3 col-md-6 col-sm-12">
+                                <label for="phone_number" class="form-label"
+                                  >Phone</label
+                                >
+                                {{form.phone_number}}
+                              </div>
+                              <div class="form-group mb-3 col-md-6 col-sm-12">
+                                <label for="address" class="form-label"
+                                  >Address</label
+                                >
+                                {{form.address}}
+                              </div>
+                              <div class="form-group mb-3 col-md-6 col-sm-12">
+                                <label for="marital_status" class="form-label"
+                                  >Marital Status</label
+                                >
+                                {{form.marital_status}}
+                              </div>
+                            </div>
+                            <hr />
+                            <h2>Employment Information</h2>
+                            <hr />
+                            <div class="row">
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="employee_number" class="form-label"
+                                  >Employee Number</label
+                                >
+                                {{form.employee_number}}
+                              </div>
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="occupation" class="form-label"
+                                  >Occupation</label
+                                >
+                                {{form.occupation}}
+                              </div>
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="department" class="form-label"
+                                  >Department</label
+                                >
+                                {{form.department}}
+                              </div>
+                            </div>
+                            <hr />
+                            <h2>Next of Kin</h2>
+                            <hr />
+
+                            <div class="row">
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label for="next_of_kin_name" class="form-label"
+                                  >Next of Kin Names</label
+                                >
+                                {{form.next_of_kin_name}}
+                              </div>
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label
+                                  for="next_of_kin_relationship"
+                                  class="form-label"
+                                  >Next of Kin Relationship</label
+                                >
+                                {{form.next_of_kin_relationship}}
+                              </div>
+                              <div class="form-group mb-3 col-md-4 col-sm-12">
+                                <label
+                                  for="next_of_kin_phone"
+                                  class="form-label"
+                                  >Next of Kin Phone</label
+                                >
+                                {{form.next_of_kin_phone}}
+                              </div>
+                            </div>
+
+                            <div class="form-group mb-0 row">
+                              <div class="col-12">
+                                <div class="d-grid">
+                                  <button class="btn btn-primary" type="submit">
+                                    Register
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+
+                        <div class="text-center text-muted mt-4">
+                          <p class="mb-0">
+                            Already have an account ?<a
+                              class="text-primary ms-2 fw-medium"
+                              href="/dusty/html/auth-login"
+                              >Login here</a
+                            >
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Vendor -->
+    {% include "assets/js.html" %}
+  </body>
+</html>

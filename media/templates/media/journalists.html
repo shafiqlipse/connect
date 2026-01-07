@@ -1,0 +1,85 @@
+{% extends "dashboard/dashboard.html" %}
+<!-- IGNORE-->
+{% load static %}
+<!-- IGNORE-->
+{% block title %}Journalists{% endblock %}
+<!-- IGNORE-->
+{% block content %}
+<div class="container-fluid">
+  <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+      <h4 class="fs-18 fw-semibold m-0">Journalists</h4>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Media</a>
+        </li>
+        <li class="breadcrumb-item active">Journalists</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Journalists Form Submissions</h5>
+        </div>
+        <!-- end card header -->
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="forms" class="display">
+              <thead>
+                <tr>
+                  <th>Names</th>
+                  <th>Media House</th>
+                  <th>Role</th>
+                  <th>Contact</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for journalist in journalists %}
+                <tr>
+                  <td>
+                    <a href="{% url 'journalist' journalist.id %}"
+                      >{{ journalist.fname }} {{ journalist.lname }}</a
+                    >
+                  </td>
+                  <td>{{ journalist.media_house }}</td>
+                  <td>{{ journalist.role }}</td>
+                  <td>{{ journalist.phone }}</td>
+                  <td>{{ journalist.email }}</td>
+                  <td>
+                    {% if journalist.status == "Active" %}
+                    <span class="badge badge-success-soft">Verified</span>
+                    {% else %}
+                    <a
+                      href="{% url 'activate_journalist' journalist.id %}"
+                      class="btn btn-sm btn-success"
+                      >Activate</a
+                    >
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-outline-primary"
+                      >Deactivate</a
+                    >
+                    <a href="#" class="btn btn-sm btn-outline-danger">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

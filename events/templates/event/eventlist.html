@@ -1,139 +1,89 @@
 {% extends "dashboard/dashboard.html" %}
-<!---->
+<!-- IGNORE-->
 {% load static %}
-<!---->
-{% block title %} | Dashboard{% endblock %}
-<!---->
+<!-- IGNORE-->
+{% block title %}Journalists{% endblock %}
+<!-- IGNORE-->
 {% block content %}
-<!-- Content Wrapper START -->
-<!-- Page Content -->
+<div class="container-fluid">
+  <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+      <h4 class="fs-18 fw-semibold m-0">Events</h4>
+    </div>
 
-<div id="app-content">
-  <!-- Container fluid -->
-  <div class="app-content-area">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-12">
-          <!-- Page header -->
-          <div class="mb-5">
-            <h3 class="mb-0">Events</h3>
-          </div>
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Media</a>
+        </li>
+        <li class="breadcrumb-item active">Events</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <a href="#" class="btn  btn-primary">Create Event</a>
         </div>
-      </div>
-      <div>
-        <div class="col-12">
-          <div class="card p10-0">
-            <div class="card-header d-md-flex border-bottom-0">
-              {% if user.is_admin %}
-              <div class="flex-grow-1">
-                <a href="{% url 'newevent'%}" class="btn btn-primary"
-                  >+ Add Event</a
-                >
-              </div>
-              <div class="mt-3 mt-md-0">
-                <a
-                  href="#!"
-                  class="btn btn-ghost btn-icon btn-sm rounded-circle texttooltip"
-                  data-template="settingOne"
-                >
-                  <i data-feather="settings" class="icon-xs"></i>
-                  <div id="settingOne" class="d-none">
-                    <span>Setting</span>
-                  </div>
-                </a>
+        <!-- end card header -->
 
-                <a href="#!" class="btn btn-outline-white ms-2">Import</a>
-                <a href="#!" class="btn btn-outline-white ms-2">Export</a>
-              </div>
-              {% endif %}
-            </div>
-            <div class="card-body">
-              <div class="table-responsive table-card">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Organiser</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for event in events%}
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img
-                              src="{{event.event_photo.url}}"
-                              class="avatar avatar-sm me-3 border-radius-lg"
-                              alt="user1"
-                            />
-                          </div>
-                          <a
-                            href="{% url 'event' event.id %}"
-                            class="d-flex flex-column justify-content-center"
-                          >
-                            <h6 class="mb-0 text-sm">{{event.title}}</h6>
-                          </a>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">
-                          {{event.organiser}}
-                        </p>
-                      </td>
+        <div class="card-body">
+          <div class="table-responsive table-card">
+            <table
+              id="example"
+              class="table text-nowrap table-centered mt-0"
+              style="width: 100%"
+            >
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-1">Event</th>
+                  <th>Venue</th>
+                  <th>Department</th>
 
-                      <td>
-                        <span class="badge badge-sm bg-gradient-success"
-                          >{{event.start_date}}</span
-                        >
-                      </td>
-                      <td>
-                        <span class="text-secondary text-xs font-weight-bold"
-                          >{{event.end_date}}</span
-                        >
-                      </td>
+                  <th>Status</th>
+                  <th>Accreditation</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for journ in events %}
+                <tr>
+                  <td class="ps-0">
+                    <h5 class="mb-0">
+                      <a href="{% url 'event' journ.id%}" class="text-inherit"
+                        >{{journ.title}}</a
+                      >
+                    </h5>
+                  </td>
+                  <td>{{journ.venue}}</td>
+                  <td>{{journ.start_date}}</td>
+                  <td>{{journ.status}}</td>
 
-                      <td>
-                        <a
-                          href="{% url 'deactivate_event' event.id%}"
-                          class="btn btn-ghost btn-icon btn-sm rounded-circle texttooltip"
-                          data-template="eyeOne"
-                        >
-                          <i data-feather="eye" class="icon-xs"></i>
-                          <div id="eyeOne" class="d-none">
-                            <span>End Requests</span>
-                          </div>
-                        </a>
-                        <a
-                          href="{% url 'eventupdate' event.id%}"
-                          class="btn btn-ghost btn-icon btn-sm rounded-circle texttooltip"
-                          data-template="editOne"
-                        >
-                          <i data-feather="edit" class="icon-xs"></i>
-                          <div id="editOne" class="d-none">
-                            <span>Edit</span>
-                          </div>
-                        </a>
-                        <a
-                          href="#!"
-                          class="btn btn-ghost btn-icon btn-sm rounded-circle texttooltip"
-                          data-template="trashOne"
-                        >
-                          <i data-feather="trash-2" class="icon-xs"></i>
-                          <div id="trashOne" class="d-none">
-                            <span>Delete</span>
-                          </div>
-                        </a>
-                      </td>
-                    </tr>
-                    {%endfor%}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                  <td>
+                    <form method="post" class="form-contol">
+                      {% csrf_token %}
+                      <input
+                        type="submit"
+                        name="Accreditation"
+                        value="Accreditation"
+                        class="btn btn-sm btn-primary"
+                      />
+                    </form>
+                  </td>
+                  <td>
+                    <a href="{% url 'deactivate_event' journ.id %}" class="btn btn-sm btn-outline-primary"
+                      >Deactivate</a
+                    >
+                    <a href="{% url 'eventupdate' journ.id %}" class="btn btn-sm btn-outline-secondary"
+                      >Edit</a
+                    >
+                    <a href="{% url 'eventdelete' journ.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

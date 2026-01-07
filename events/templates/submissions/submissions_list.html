@@ -23,14 +23,15 @@
       <div>
         <div class="col-12">
           <div class="card p10-0">
+            {% if user.is_media %}
             <div class="card-header d-md-flex border-bottom-0">
               <div class="flex-grow-1">
                 <a href="{% url 'create_submission'%}" class="btn btn-primary"
                   >+ Add Submission</a
                 >
               </div>
-
             </div>
+            {% endif %}
             <div class="card-body">
               <div class="table-responsive table-card">
                 <table
@@ -51,12 +52,14 @@
                   <tbody>
                     {% for sub in submissions %}
                     <tr>
-                      <td>{{sub.journalist.first_name}} {{sub.journalist.last_name}}</td>
+                      <td>
+                        {{sub.journalist.first_name}}
+                        {{sub.journalist.last_name}}
+                      </td>
                       <td>{{sub.title}}</td>
                       <td>{{sub.event.title}}</td>
                       <td>{{sub.type}}</td>
                       <td>{{sub.submitted_at}}</td>
-
 
                       <td>
                         <a

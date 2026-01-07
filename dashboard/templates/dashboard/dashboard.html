@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+
+    <meta charset="utf-8" />
+    <title>{% block title%}{%endblock%} | USSSA MediaHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc."/>
+    <meta name="author" content="Zoyothemes"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'img/logo-sm-d.png'%}">
+
+    <!-- App css -->
+
+    {% include "assets/css.html" %}
+</head>
+
+  <body data-menu-color="dark" data-sidebar="default">
+    <!-- Begin page -->
+    <div id="app-layout">
+      <!-- Topbar Start -->
+      <div class="topbar-custom">
+        <div class="container-fluid">
+          <div class="d-flex justify-content-between">
+            <ul
+              class="list-unstyled topnav-menu mb-0 d-flex align-items-center"
+            >
+              <li>
+                <button class="button-toggle-menu nav-link">
+                  <i data-feather="menu" class="noti-icon"></i>
+                </button>
+              </li>
+              <li class="d-none d-lg-block">
+                <form class="app-search d-none d-md-block me-auto">
+                  <div class="position-relative topbar-search">
+                    <input
+                      type="text"
+                      class="form-control ps-4"
+                      placeholder="Search..."
+                    />
+                    <iconify-icon
+                      icon="solar:minimalistic-magnifer-outline"
+                      class="align-middle fs-14 position-absolute text-muted top-50 translate-middle-y ms-2"
+                    ></iconify-icon>
+                  </div>
+                </form>
+              </li>
+            </ul>
+
+            <ul
+              class="list-unstyled topnav-menu mb-0 d-flex align-items-center"
+            >
+              <li class="d-none d-sm-flex">
+                <button
+                  type="button"
+                  class="btn nav-link"
+                  data-toggle="fullscreen"
+                >
+                  <iconify-icon
+                    icon="solar:minimize-square-outline"
+                    class="fs-24 align-middle"
+                  ></iconify-icon>
+                </button>
+              </li>
+
+              <!-- Light/Dark Mode Button Themes -->
+              <li class="d-none d-sm-flex">
+                <button type="button" class="btn nav-link" id="light-dark-mode">
+                  <iconify-icon
+                    icon="solar:moon-outline"
+                    class="fs-24 align-middle dark-mode"
+                  ></iconify-icon>
+                  <iconify-icon
+                    icon="solar:sun-2-outline"
+                    class="fs-24 align-middle light-mode"
+                  ></iconify-icon>
+                </button>
+              </li>
+
+              <li class="dropdown notification-list topbar-dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  href="#"
+                  role="button"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  <iconify-icon
+                    icon="solar:bell-bing-outline"
+                    class="fs-24 align-middle light-mode"
+                  ></iconify-icon>
+                  <span class="badge bg-danger rounded-circle noti-icon-badge"
+                    >9</span
+                  >
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+                  <!-- item-->
+                  <div class="dropdown-item noti-title">
+                    <h5 class="m-0 fs-16 fw-semibold">
+                      <span class="float-end"
+                        ><a href="javascript:void(0);" class="text-dark fs-14"
+                          ><small class="text-primary"
+                            >Make all as read</small
+                          ></a
+                        ></span
+                      >Notification
+                    </h5>
+                  </div>
+
+                  <div class="noti-scroll" data-simplebar>
+                    <!-- item-->
+                    <a
+                      href="javascript:void(0);"
+                      class="dropdown-item notify-item text-muted link-primary"
+                    >
+                      <div class="d-flex align-items-center">
+                        <div class="notify-icon">
+                          <img
+                            src="assets/images/users/avatar/avatar-3.jpg"
+                            class="img-fluid rounded-circle"
+                            alt=""
+                          />
+                        </div>
+                        <div class="flex-grow-1">
+                          <div
+                            class="d-flex align-items-center justify-content-between mb-1"
+                          >
+                            <p class="notify-details mb-0">Carl Steadham</p>
+                            <iconify-icon
+                              icon="solar:record-bold"
+                              class="fs-12 text-primary align-middle light-mode"
+                            ></iconify-icon>
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <p class="text-muted mb-0">Thursday 4:20pm</p>
+                            <p class="text-muted mb-0">2 hours ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <!-- item-->
+                    <a
+                      href="javascript:void(0);"
+                      class="dropdown-item notify-item text-muted link-primary"
+                    >
+                      <div class="d-flex align-items-start">
+                        <div class="notify-icon">
+                          <img
+                            src="assets/images/users/avatar/avatar-5.jpg"
+                            class="img-fluid rounded-circle"
+                            alt=""
+                          />
+                        </div>
+                        <div class="flex-grow-1">
+                          <div
+                            class="d-flex align-items-center justify-content-between mb-1"
+                          >
+                            <p class="notify-details mb-0">Carl Steadham</p>
+                            <iconify-icon
+                              icon="solar:record-bold"
+                              class="fs-12 text-primary align-middle light-mode"
+                            ></iconify-icon>
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between mb-1"
+                          >
+                            <p class="text-muted mb-0">Thursday 4:00pm</p>
+                            <p class="text-muted mb-0">1 hours ago</p>
+                          </div>
+                          <div class="p-2 rounded-2 bg-light">
+                            <p class="text-dark mb-0">
+                              Love the background on this! <br />
+                              Would love to learn
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <!-- item-->
+                    <a
+                      href="javascript:void(0);"
+                      class="dropdown-item notify-item text-muted link-primary"
+                    >
+                      <div class="d-flex align-items-center">
+                        <div class="notify-icon">
+                          <img
+                            src="assets/images/users/avatar/avatar-1.jpg"
+                            class="img-fluid rounded-circle"
+                            alt=""
+                          />
+                        </div>
+                        <div class="flex-grow-1">
+                          <div
+                            class="d-flex align-items-center justify-content-between mb-1"
+                          >
+                            <p class="notify-details mb-0">Eleanor Mac</p>
+                            <iconify-icon
+                              icon="solar:record-bold"
+                              class="fs-12 text-primary align-middle light-mode"
+                            ></iconify-icon>
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <p class="text-muted mb-0">Thursday 3:20pm</p>
+                            <p class="text-muted mb-0">3 hours ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <!-- item-->
+                    <a
+                      href="javascript:void(0);"
+                      class="dropdown-item notify-item text-muted link-primary"
+                    >
+                      <div class="d-flex align-items-start">
+                        <div class="notify-icon">
+                          <img
+                            src="assets/images/users/avatar/avatar-7.jpg"
+                            class="img-fluid rounded-circle"
+                            alt=""
+                          />
+                        </div>
+                        <div class="flex-grow-1">
+                          <div
+                            class="d-flex align-items-center justify-content-between mb-1"
+                          >
+                            <p class="notify-details mb-0">Ollie diggs</p>
+                            <iconify-icon
+                              icon="solar:record-bold"
+                              class="fs-12 text-primary align-middle light-mode"
+                            ></iconify-icon>
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between mb-2"
+                          >
+                            <p class="text-muted mb-0">Thursday 3:44pm</p>
+                            <p class="text-muted mb-0">2 hours ago</p>
+                          </div>
+                          <div class="d-flex align-items-center gap-1">
+                            <button
+                              type="button"
+                              class="btn btn-sm bg-white border"
+                            >
+                              Decline
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-sm btn-primary"
+                            >
+                              Accept
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <!-- All-->
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item text-center text-primary notify-item notify-all fw-bold border-top border-light"
+                    >View all
+                    <i class="fe-arrow-right"></i>
+                  </a>
+                </div>
+              </li>
+
+              <!-- User Dropdown -->
+              <li class="dropdown notification-list topbar-dropdown">
+                <a
+                  class="nav-link dropdown-toggle nav-user me-0"
+                  data-bs-toggle="dropdown"
+                  href="#"
+                  role="button"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                {% if user.profile.photo %}
+                  <img
+                    src="{{user.profile.photo.url}}"
+                    alt="user-image"
+                    class="rounded-circle"
+                  />{% else %}
+                  <img
+                    src="{% static 'img/logo-sm.png'%}"
+                    alt="user-image"
+                    class="rounded-circle"
+                  />{% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end profile-dropdown">
+                  <!-- item-->
+                  <div class="dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Welcome {{user.first_name}}!</h6>
+                  </div>
+
+                  <!-- item-->
+                  <a
+                    class="dropdown-item notify-item rounded-2"
+
+                    href="{% if user.is_media %}{% url 'media_profile' %}{% else %}{% url 'overview' %}{% endif %} "
+                  >
+                    <iconify-icon
+                      icon="solar:shield-user-outline"
+                      class="fs-18 align-middle"
+                    ></iconify-icon>
+                    <span>Profile</span>
+                  </a>
+
+                  <!-- item-->
+                  <a
+                    class="dropdown-item notify-item rounded-2"
+                    href="/dusty/html/pages-profile"
+                  >
+                    <iconify-icon
+                      icon="solar:settings-linear"
+                      class="fs-18 align-middle"
+                    ></iconify-icon>
+                    <span>Setting</span>
+                  </a>
+
+                  <!-- item-->
+                  <a
+                    class="dropdown-item notify-item rounded-2"
+                    href="/dusty/html/auth-lock-screen"
+                  >
+                    <iconify-icon
+                      icon="solar:lock-keyhole-outline"
+                      class="fs-18 align-middle"
+                    ></iconify-icon>
+                    <span>Lock Screen</span>
+                  </a>
+
+                  <!-- item-->
+                  <a
+                    class="dropdown-item notify-item rounded-2"
+                    href="{% url 'logout' %}"
+                  >
+                    <iconify-icon
+                      icon="solar:login-3-outline"
+                      class="fs-18 align-middle"
+                    ></iconify-icon>
+                    <span>Logout</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- end Topbar -->
+
+      <!-- Left Sidebar Start -->
+      <div class="app-sidebar-menu">
+        <div class="h-100" data-simplebar>
+          <!--- Sidemenu -->
+          <div id="sidebar-menu">
+            <div class="logo-box">
+              <a class="logo logo-light" href="{% url 'overview' %}">
+                <span class="logo-sm">
+                  <img src="{% static 'img/logo-sm-d.png'%}" alt="" height="22" />
+                </span>
+                <span class="logo-lg">
+                  <img src="{% static 'img/logo-dark-lg.png'%}" alt="" height="35" />
+                </span>
+              </a>
+              <a class="logo logo-dark" href="{% url 'overview' %}">
+                <span class="logo-sm">
+                  <img src="{% static 'img/logo-sm.png'%}" alt="" height="22" />
+                </span>
+                <span class="logo-lg">
+                  <img src="{% static 'img/logo-w-lg.png'%}" alt="" height="35" />
+                </span>
+              </a>
+            </div>
+
+            <ul id="side-menu">
+              <li class="menu-title">Menu</li>
+{% if user.is_staff %}
+              <li>
+                <a href="#sidebarDashboards" data-bs-toggle="collapse">
+                  <span class="nav-icon">
+                    <iconify-icon
+                      icon="solar:home-2-bold-duotone"
+                    ></iconify-icon>
+                  </span>
+                  <span> Dashboard </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarDashboards">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a class="tp-link" href="/dusty/html/">Sales</a>
+                    </li>
+                    <li>
+                      <a class="tp-link" href="/dusty/html/analytics"
+                        >Analytics</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="menu-title mt-2">Journalists</li>
+
+              <li>
+                <a class="tp-link" href="{% url 'journalists' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:bill-list-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Submissions </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="tp-link" href="{% url 'active_journalists' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:shield-user-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Active Journalists </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="tp-link" href="/dusty/html/apps-calendar">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:calendar-minimalistic-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Calendar </span>
+                </a>
+              </li>
+
+              <li class="menu-title">Events</li>
+              
+              <li>
+                <a class="tp-link" href="{% url 'newevent' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:cpu-bolt-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Add Event </span>
+                </a>
+              </li>
+              <li>
+                <a class="tp-link" href="{% url 'events' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:cpu-bolt-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> All Events </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="tp-link" href="{% url 'coming_events' %}">
+                 <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:clipboard-text-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Active Events </span>
+                </a>
+              </li>
+
+              <li class="menu-title mt-2">Returns</li>
+
+              <li>
+                <a href="{% url 'allsubmissions' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:compass-square-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> All Returns </span>
+                </a>
+        
+              </li>
+
+              <li class="menu-title mt-2">General</li>     
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Terms & Conditions </span>
+                            </a>
+                        </li>   
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Privacy Policy </span>
+                            </a>
+                        </li>   
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Widgets </span>
+                            </a>
+                        </li>   
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Widgets </span>
+                            </a>
+                        </li> 
+                  </ul>
+                </div>
+              </li>
+              {% else %}
+              
+
+              <li>
+                <a class="tp-link" href="{% url 'media_profile' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:bill-list-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Dashboard </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="tp-link" href="/dusty/html/apps-calendar">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:calendar-minimalistic-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Calendar </span>
+                </a>
+              </li>
+
+              <li class="menu-title">Events</li>
+
+              <li>
+                <a class="tp-link" href="{% url 'coming_events' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:cpu-bolt-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Coming Events </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="tp-link" href="{% url 'completed_events' %}">
+                 <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:clipboard-text-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Completed Events </span>
+                </a>
+              </li>
+
+              <li class="menu-title mt-2">Returns</li>
+
+              <li>
+                <a href="{% url 'mysubmissions' %}">
+                  <span class="nav-icon"
+                    ><iconify-icon
+                      icon="solar:compass-square-bold-duotone"
+                    ></iconify-icon
+                  ></span>
+                  <span> Submissions </span>
+                </a>
+        
+              </li>
+
+              <li class="menu-title mt-2">General</li>     
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Terms & Conditions </span>
+                            </a>
+                        </li>   
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Privacy Policy </span>
+                            </a>
+                        </li>   
+               <li>
+                            <a href="widgets.html" class="tp-link">
+                                <span class="nav-icon"><iconify-icon
+                                        icon="solar:box-minimalistic-bold-duotone"></iconify-icon></span>
+                                <span> Feedback </span>
+                            </a>
+                        </li> 
+                  </ul>
+                </div>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- End Sidebar -->
+
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!-- Left Sidebar End -->
+
+
+      <div class="content-page">
+   
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+              {% block content %}{% endblock  %}
+        <!-- Footer Start -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col fs-13 text-muted text-center">
+                &copy;
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                - Made with <span class="mdi mdi-heart text-danger"></span> by
+                <a href="#!" class="text-reset fw-semibold">Shafiq</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- end Footer -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page content -->
+      <!-- ============================================================== -->
+    </div>
+ 
+    {% include "assets/js.html" %}
+  </body>
+</html>

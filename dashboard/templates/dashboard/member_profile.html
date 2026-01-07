@@ -1,0 +1,271 @@
+{% extends "dashboard/dashboard.html" %}
+<!--static-->
+{% load static %}{% load humanize %}
+<!--content area-->
+{% block title %} Overview{% endblock title %}
+<!--content area-->
+{% block content %}
+<div class="content">
+  <!-- Start Content-->
+  <div class="container-fluid">
+    <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+      <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">{{profile.membership_number}}</h4>
+      </div>
+
+      <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+          <li class="breadcrumb-item">
+            <a href="javascript: void(0);">Profile</a>
+          </li>
+          <li class="breadcrumb-item active">
+            {{profile.first_name}} {{profile.last_name}}
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <img
+            src="https://zoyothemes.com/dusty/html/assets/images/small/user-image.jpg"
+            class="rounded-top-2 img-fluid"
+            alt="image data"
+          />
+
+          <div class="card-body">
+            <div class="align-items-center">
+              <div class="dusty-main-sections">
+                <div class="dusty-profile-main">
+                  <img
+                    src="{{profile.photo.url}}"
+                    class="rounded-circle img-fluid avatar-xxl img-thumbnail float-start"
+                    alt="image profile"
+                  />
+
+                  <span class="sil-profile_main-pic-change img-thumbnail">
+                    <i class="mdi mdi-camera text-white"></i>
+                  </span>
+                </div>
+
+                <div class="overflow-hidden ms-md-4 ms-0">
+                  <h4 class="m-0 text-dark fs-20 mt-2 mt-md-0">{{profile.first_name}} {{profile.last_name}}</h4>
+                  <p class="my-1 text-muted fs-16">
+                    {{profile.occupation}} in {{profile.department}}
+                  </p>
+                  <span class="fs-15"
+                    ><i class="mdi mdi-message me-2 align-middle"></i>Address:
+                    <span
+                      >{{profile.address}}
+                    </span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body pt-2">
+ 
+
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-md-6 mb-0">
+                    <div class=" mb-4">
+                      <h5
+                        class="fs-16 text-dark fw-semibold mb-3 text-capitalize"
+                      >
+                        Financial Overview
+                      </h5>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 col-12">
+                        <div class="card border">
+                          <div class="card-body">
+                            <h4 class="m-0 fw-semibold text-dark fs-16">
+                              Total Balance
+                            </h4>
+                            <div class="row mt-2 d-flex align-items-center">
+                              <div class="col">
+                                <h5 class="fs-20 mt-1 fw-bold">{{total_balance|intcomma}}/=</h5>
+                                
+                              </div>
+                              <div class="col-auto">
+                                <a
+                                  href="#"
+                                  class="btn btn-sm btn-outline-primary px-3"
+                                  >More Details</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <!--end card-body-->
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 col-12">
+                        <div class="card border">
+                          <div class="card-body">
+                            <h4 class="m-0 fw-semibold text-dark fs-16">
+                              Total Savings
+                            </h4>
+                            <div class="row mt-2 d-flex align-items-center">
+                              <div class="col">
+                                <h5 class="fs-20 mt-1 fw-bold">{{savings|intcomma}}/=</h5>
+                              </div>
+                              <div class="col-auto">
+                                <a
+                                  href="#"
+                                  class="btn btn-sm btn-outline-primary px-3"
+                                  >Make Deposit</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <!--end card-body-->
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 col-12">
+                        <div class="card border mb-md-0">
+                          <div class="card-body">
+                            <h4 class="m-0 fw-semibold text-dark fs-16">
+                              Loanable Amount
+                            </h4>
+                            <div class="row mt-2 d-flex align-items-center">
+                              <div class="col">
+                                <h5 class="fs-20 mt-1 fw-bold">{{loanable_amount|intcomma}}/=</h5>
+                              </div>
+                              <div class="col-auto">
+                                <a
+                                  href="#"
+                                  class="btn btn-sm btn-outline-primary px-3"
+                                  >Get a Loan</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <!--end card-body-->
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 col-12">
+                        <div class="card border mb-md-0">
+                          <div class="card-body">
+                            <h4 class="m-0 fw-semibold text-dark fs-16">
+                              Total Shares
+                            </h4>
+                            <div class="row mt-2 d-flex align-items-center">
+                              <div class="col">
+                                <h5 class="fs-20 mt-1 fw-bold">{{shares|intcomma}}/=</h5>
+                             
+                              </div>
+                              <div class="col-auto align-content-end">
+                                <a
+                                  href="#"
+                                  class="btn btn-sm btn-outline-primary px-3"
+                                  >Buy More</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <!--end card-body-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end project -->
+
+                   <div class="col-md-6 col-sm-6 col-md-6 mb-4">
+              
+
+        
+       
+                    <h5
+                      class="fs-16 text-dark fw-semibold  mb-4 text-capitalize"
+                    >
+                      Contact Details
+                    </h5>
+
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4 col-lg-4 mb-3">
+                        <div class="profile-email mb-md-2">
+                          <h6 class="text-uppercase fs-13">Email Addess</h6>
+                          <a
+                            href="#"
+                            class="text-primary fs-14 text-decoration-underline"
+                            >{{profile.email}}</a
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-lg-4 mb-3">
+                       
+                        <div class="profile-email mb-md-2">
+                          <h6 class="text-uppercase fs-13">Phone Number</h6>
+                          <a
+                            href="#"
+                            class="text-primary fs-14 text-decoration-underline"
+                            >{{profile.phone_number}}</a
+                          >
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 col-sm-4 col-lg-4 mb-3">
+                        <div class="profile-email">
+                          <h6 class="text-uppercase fs-13">Location</h6>
+                          <a href="#" class="fs-14">{{profile.address}}</a>
+                        </div>
+                      </div>
+       
+                    <h5
+                      class="fs-16 text-dark fw-semibold  mb-4 text-capitalize"
+                    >
+                      Next of Kin
+                    </h5>
+
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4 col-lg-4 mb-3">
+                        <div class="profile-email mb-md-2">
+                          <h6 class="text-uppercase fs-13">Names</h6>
+                          <a
+                            href="#"
+                            class="text-primary fs-14 text-decoration-underline"
+                            >{{profile.next_of_kin_name}}</a
+                          >
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 col-sm-4 col-lg-4 mb-3">
+                        <div class="profile-email">
+                          <h6 class="text-uppercase fs-13">Phone Number</h6>
+                          <a href="#" class="fs-14">{{profile.next_of_kin_phone}}</a>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-lg-4 mb-3">
+                        <div class="profile-email">
+                          <h6 class="text-uppercase fs-13">Relationship</h6>
+                          <a href="#" class="fs-14">{{profile.next_of_kin_relationship}}</a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- end skill -->
+                </div>
+              </div>
+
+            </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- container-fluid -->
+</div>
+{% endblock %}

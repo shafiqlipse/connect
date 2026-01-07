@@ -13,7 +13,7 @@ def media_required(view_func):
             return view_func(request, *args, **kwargs)
         else:
             return render(
-                request, "account/login.html"
+                request, "auth/login.html"
             )  # You can customize this template
 
     return _wrapped_view
@@ -23,11 +23,11 @@ def media_required(view_func):
 def staff_required(view_func):
     @login_required(login_url="login")
     def _wrapped_view(request, *args, **kwargs):
-        if request.user.is_admin:
+        if request.user.is_staff:
             return view_func(request, *args, **kwargs)
         else:
             return render(
-                request, "account/login.html"
+                request, "auth/login.html"
             )  # You can customize this template
 
     return _wrapped_view

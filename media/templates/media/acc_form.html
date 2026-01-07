@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Register | USSSA - MediaHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Welcome to USSSA - MediaHub Registration Page"
+    />
+    <meta name="author" content="Shafiq" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'img/logo-sm-d.png'%}" />
+    <!-- App favicon -->
+
+    {% include "assets/css.html" %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Begin page -->
+    <div class="account-page">
+      <div class="container-fluid p-0">
+        <div class="row">
+          <div class="col-xl-6 align-self-center d-xl-block d-none">
+          
+            <div class="account-page-bg rounded-4">
+              <div class="text-center">
+                <div class="auth-image">
+                  <img
+                    src="{% static 'img/logo-dark-lg.png'%}"
+                    class="mx-auto img-fluid"
+                    alt="images"
+                  />
+                </div>
+              </div>
+            </div>  
+          </div>
+
+          <div class="col-xl-6  d-xl-inline-block vh-100">
+              <div class="row h-100 overflow-auto">
+              <div class="col-md-8 mx-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="mb-0 p-0 p-lg-3">
+                      <div class="mb-0 border-0 p-md-4 p-lg-0">
+                        <div class="mb-3 p-0 text-center">
+                          <div class="auth-brand">
+                            <a class="logo logo-light" href="/">
+                              <span class="logo-lg">
+                                <img
+                                  src="{% static 'img/logo-dark-lg.png'%}"
+                                  alt=""
+                                  height="24"
+                                />
+                              </span>
+                            </a>
+                            <a class="logo logo-dark" href="/">
+                              <span class="logo-lg">
+                                <img
+                                  src="{% static 'img/logo-w-lg.png'%}"
+                                  alt=""
+                                  height="40"
+                                />
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="auth-title-section mb-4 text-center">
+                          <h1><span>USSSA</span> media hub</h1>
+                          <p>
+                            The USSSA Media Hub is a restricted-access,
+                            web-based platform on usssaonline.com designed to
+                            support journalists, photographers, and other media
+                            professionals. Media personnel are strongly
+                            encouraged to <strong>Register</strong>, as only
+                            registered users can apply for accreditation to
+                            USSSA events and competitions.
+                          </p>
+                        </div>
+                          {% if messages %} {% for message in messages %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %} {% endif %}
+                        <div class="pt-0">
+                          <form
+                            action=""
+                            method="POST"
+                            class="form-control"
+                            enctype="multipart/form-data"
+                            id="acc_form"
+                          >
+                            {% csrf_token %}
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="mb-3">
+                                  <label for="profile_photo" class="form-label"
+                                    >Upload Profile Photo</label
+                                  >
+                                  {{form.profile_photo}}
+                                  <div id="photos_preview" class="mt-3"></div>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="fname" class="form-label"
+                                    >First Name</label
+                                  >
+                                  {{form.fname}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="lname" class="form-label"
+                                    >Last Name</label
+                                  >
+                                  {{form.lname}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="nationality" class="form-label"
+                                    >Nationality</label
+                                  >
+                                  {{form.nationality}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="address" class="form-label"
+                                    >Address</label
+                                  >
+                                  {{form.address}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="email" class="form-label"
+                                    >Email</label
+                                  >
+                                  {{form.email}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="phone" class="form-label"
+                                    >Phone</label
+                                  >
+                                  {{form.phone}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="gender" class="form-label"
+                                    >Gender</label
+                                  >
+                                  {{form.gender}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="media_house" class="form-label"
+                                    >Media House</label
+                                  >
+                                  {{form.media_house}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="media_type" class="form-label"
+                                    >Media Type</label
+                                  >
+                                  {{form.media_type}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="role" class="form-label"
+                                    >Role</label
+                                  >
+                                  {{form.role}}
+                                </div>
+                                <div class="mb-3">
+                                  <label for="office_id" class="form-label"
+                                    >Office ID</label
+                                  >
+                                  {{form.office_id}}
+                                </div>
+                                <div class="mb-3">{{form.agree_to_terms}}</div>
+                                <div class="mb-3 d-grid">
+                                  <p>Agree to our terms and conditions.</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-grid mb-3">
+                              <button
+                                class="btn btn-primary"
+                                type="submit"
+                                form="acc_form"
+                              >
+                                Register
+                              </button>
+                          </form>
+                        </div>
+
+                        <div class="text-center text-muted mt-4">
+                          <p class="mb-0">
+                            Already have an account ?<a
+                              class="text-primary ms-2 fw-medium"
+                              href="{% url 'login' %}"
+                              >Login here</a
+                            >
+                          </p>
+                          <p>
+                            Further assistance is available via
+                            <a href="mailto:media@usssaonline.com"
+                              >media@usssaonline.com</a
+                            >.
+                          </p>
+
+                          <p>Best regards, Media Hub Administrator</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Vendor -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Croppie JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <script src="{% static 'js/photo.js' %}"></script>
+    {% include "assets/js.html" %}
+  </body>
+</html>

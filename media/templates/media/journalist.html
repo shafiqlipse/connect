@@ -1,0 +1,81 @@
+{% extends "dashboard/dashboard.html" %}
+<!-- IGNORE-->
+{% load static %}
+<!-- IGNORE-->
+{% block title %}Journalists{% endblock %}
+<!-- IGNORE-->
+{% block content %}
+<div class="container-fluid">
+  <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+      <h4 class="fs-18 fw-semibold m-0">Journalists</h4>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Media</a>
+        </li>
+        <li class="breadcrumb-item active">Journalists</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">
+            {{ journalist.fname }} {{ journalist.lname }}
+          </h5>
+        </div>
+        <!-- end card header -->
+
+        <div class="card-body">
+          <img src="{{journalist.profile_photo.url}}" alt="" width="100%" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Personal Information</h5>
+        </div>
+        <!-- end card header -->
+
+        <div class="card-body">
+          <p>
+            <strong>Names:</strong> {{ journalist.fname }} {{ journalist.lname
+            }}
+          </p>
+          <p><strong>Nationality:</strong> {{ journalist.nationality }}</p>
+          <p><strong>Address:</strong> {{ journalist.address }}</p>
+          <p><strong>Contact:</strong> {{ journalist.phone }}</p>
+          <p><strong>Email:</strong> {{ journalist.email }}</p>
+          <p>
+            <strong>Status:</strong>
+            <span class="badge rounded-pill text-bg-success"
+              >{{ journalist.status }}</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Proffessional Information</h5>
+        </div>
+        <!-- end card header -->
+
+        <div class="card-body">
+          <p><strong>Media House:</strong> {{ journalist.media_house }}</p>
+          <p><strong>Media Type:</strong> {{ journalist.media_type }}</p>
+          <p><strong>Role:</strong> {{ journalist.role }}</p>
+          <p><strong>Consent:</strong> {{ journalist.agree_to_terms }}</p>
+          <img src="{{journalist.office_id.url}}" alt="" width="100%" />
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>
