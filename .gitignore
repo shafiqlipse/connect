@@ -5,6 +5,7 @@ people/settings.py
 accounts/migrations/*
 events/migrations/*
 core/migrations/*
+media/migrations/*
 uploads/
 
 
