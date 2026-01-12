@@ -21,7 +21,7 @@
       <a href="{% url 'media_profile'%}" class="btn-submit">Dashboard</a>
       {% endif %}{% else %}
       <a href="{% url 'login'%}" class="btn-submit">Login to your media account</a>{% endif %}
-      <p>Dont have an account? <a href="">Register</a></p>
+      <p>Dont have an account? <a href="{% url 'accform' %}">Register</a></p>
     </div>
     </div>
  
