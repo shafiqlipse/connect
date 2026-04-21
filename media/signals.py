@@ -59,7 +59,7 @@ def create_media_user(sender, instance, **kwargs):
             try:
                 from django.utils.crypto import get_random_string
 
-                password = get_random_string(12)
+                password = "media@usssa26"
 
                 user, created = User.objects.get_or_create(
                     email=instance.email,
