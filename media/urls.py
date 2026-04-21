@@ -12,6 +12,7 @@ urlpatterns = [
     path("journalist/<int:id>/", journalist, name="journalist"),
     
     path("activate/<int:id>", activate_journalist, name="activate_journalist"),
+    path("deactivate_journalist/<int:id>", deactivate_journalist, name="deactivate_journalist"),
     path("active_journalists/", active_journalists, name="active_journalists"),
     path("inactive_journalists/", inactive_journalists, name="inactive_journalists"),
     path("profile/", media_profile, name="media_profile"),

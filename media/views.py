@@ -106,6 +106,25 @@ def activate_journalist(request, id):
     messages.success(request, "Journalist activated successfully.")
     return redirect("journalists")
 
+#deactivate journalist and delete user
+def deactivate_journalist(request, id):
+    journalist = get_object_or_404(Media, id=id)
+    
+    # Store user before removing reference
+    user = journalist.user
+
+    # Deactivate journalist
+    journalist.status = "pending"
+    journalist.user = None
+    journalist.save()
+
+    # Delete the user if exists
+    if user:
+        user.delete()
+
+    messages.success(request, "Journalist deactivated and user deleted successfully.")
+    return redirect("journalists")
+
 def active_journalists(request):
     journalists = Media.objects.filter(status="Active")
     return render(request, "media/journalists.html", {"journalists": journalists})
