@@ -57,8 +57,6 @@ def create_media_user(sender, instance, **kwargs):
 
         def on_commit():
             try:
-                from django.utils.crypto import get_random_string
-
                 password = "media@usssa26"
 
                 user, created = User.objects.get_or_create(
@@ -75,20 +73,6 @@ def create_media_user(sender, instance, **kwargs):
                     user.set_password(password)
                     user.save()
 
-                    send_mail(
-                        subject="Your Media Account Has Been Activated",
-                        message="",
-                        from_email="noreply@example.com",
-                        recipient_list=[instance.email],
-                        html_message=render_to_string(
-                            "account/email.html",
-                            {
-                                "username": instance.email,
-                                "password": password,
-                            },
-                        ),
-                    )
-
                 instance.user = user
                 instance.save(update_fields=["user"])
 
@@ -100,7 +84,7 @@ def create_media_user(sender, instance, **kwargs):
 
             except Exception:
                 logger.exception(
-                    "Failed to create user or send email for Media %s",
+                    "Failed to create user for Media %s",
                     instance.pk,
                 )
 
@@ -111,5 +95,3 @@ def create_media_user(sender, instance, **kwargs):
             "Unhandled error in Media post_save signal (Media %s)",
             instance.pk,
         )
-        
-   
